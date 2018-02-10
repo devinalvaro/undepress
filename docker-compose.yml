@@ -7,7 +7,7 @@ services:
     ports:
       - '5000:5000'
     volumes:
-      - ./web/src:/app/web/src
+      - ./web:/app/web
     links:
       - db
   db:
