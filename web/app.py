@@ -2,7 +2,7 @@ from flask import Flask, request, Response
 from flask_login import login_user, logout_user, LoginManager
 from yaml import safe_load
 
-from user import User
+from src.models import User
 
 with open('config.yml', 'r') as file:
     config = safe_load(file)
