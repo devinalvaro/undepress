@@ -8,8 +8,8 @@ def login(email, password):
     account_db = AccountDb()
 
     if not account_db.find(email, password):
-        return "Username or password is invalid"
+        return "LOGIN_INVALID"
     else:
         user = User(email)
         login_user(user)
-        return "Logged in"
+        return "LOGIN_SUCCESS"

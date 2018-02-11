@@ -5,7 +5,7 @@ def register(email, password):
     account_db = AccountDb()
 
     if account_db.find(email, password):
-        return "Account already exists"
+        return "REGISTER_EXIST"
     else:
         account_db.insert(email, password)
-        return "Register successful"
+        return "REGISTER_SUCCESS"
