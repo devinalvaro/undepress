@@ -16,11 +16,11 @@ login_manager.init_app(app)
 
 
 @login_manager.user_loader
-def load_user(email):
+def load_user(user_id):
     account_db = db.AccountDb()
 
-    if account_db.find(email):
-        return account.User(email)
+    if account_db.find_one(user_id=user_id):
+        return account.User(user_id)
 
 
 @app.route('/account/register', methods=['GET', 'POST'])
@@ -28,7 +28,9 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')
     elif request.method == 'POST':
-        return account.register(request.form['email'], request.form['password'])
+        return account.register(request.form['email'], request.form['password'],
+                                request.form['name'], request.form['address'],
+                                request.form['phone'])
 
 
 @app.route('/account/login', methods=['GET', 'POST'])

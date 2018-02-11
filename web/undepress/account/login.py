@@ -7,9 +7,10 @@ from .user import User
 def login(email, password):
     account_db = AccountDb()
 
-    if not account_db.find(email, password):
-        return "LOGIN_INVALID"
-    else:
-        user = User(email)
+    result = account_db.find_one(email=email, password=password)
+    if result:
+        user = User(result['user_id'])
         login_user(user)
         return "LOGIN_SUCCESS"
+    else:
+        return "LOGIN_INVALID"
