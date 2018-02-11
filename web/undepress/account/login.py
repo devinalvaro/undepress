@@ -1,11 +1,15 @@
 from flask_login import login_user
 
-from .models import User
+from db import AccountDb
+from .user import User
 
 
 def login(email, password):
-    # TODO: implement db
-    # return db.query.get(email)
+    account_db = AccountDb()
 
-    user = User(email, password)
-    login_user(user)
+    if not account_db.find(email, password):
+        return "Username or password is invalid"
+    else:
+        user = User(email, account_db.is_active(email))
+        login_user(user)
+        return "Logged in"
