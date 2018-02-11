@@ -6,4 +6,4 @@ WORKDIR /app/web
 RUN pip install -r requirements.txt
 
 ENTRYPOINT [ "python" ]
-CMD [ "-u", "app.py" ]
+CMD [ "-u", "undepress/app.py" ]

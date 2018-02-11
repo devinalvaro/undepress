@@ -2,8 +2,8 @@ from flask import Flask, request, render_template
 from flask_login import login_required, LoginManager, logout_user
 from yaml import safe_load
 
-import src.account as account
-from src.account.models import User
+import account
+from account.models import User
 
 with open('config.yml', 'r') as file:
     config = safe_load(file)
