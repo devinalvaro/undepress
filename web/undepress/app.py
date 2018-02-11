@@ -3,7 +3,6 @@ from flask_login import login_required, LoginManager, logout_user
 from yaml import safe_load
 
 import account
-from account.models import User
 
 with open('config.yml', 'r') as file:
     config = safe_load(file)
@@ -20,7 +19,7 @@ def load_user(email):
     # TODO: implement db
     # return db.query.get(email)
 
-    return User(email, True)
+    return account.models.User(email, True)
 
 
 @app.route('/account/register', methods=['GET', 'POST'])
@@ -29,6 +28,7 @@ def register():
         return render_template('register.html')
     elif request.method == 'POST':
         account.register(request.form['email'], request.form['password'])
+        return "Registered"
 
 
 @app.route('/account/login', methods=['GET', 'POST'])
@@ -37,12 +37,14 @@ def login():
         return render_template('login.html')
     elif request.method == 'POST':
         account.login(request.form['email'], request.form['password'])
+        return "Logged in"
 
 
 @app.route('/account/logout')
 @login_required
 def logout():
     logout_user()
+    return "Logged out"
 
 
 if __name__ == '__main__':
