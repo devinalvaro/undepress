@@ -10,6 +10,6 @@ def login(email, password):
     if not account_db.find(email, password):
         return "Username or password is invalid"
     else:
-        user = User(email, account_db.is_active(email))
+        user = User(email)
         login_user(user)
         return "Logged in"

@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template
 from flask_login import login_required, LoginManager, logout_user
+from os import environ
+from pymongo import MongoClient
 from yaml import safe_load
 
 import account
@@ -20,7 +22,7 @@ def load_user(email):
     account_db = db.AccountDb()
 
     if account_db.find(email):
-        return account.User(email, account_db.is_active(email))
+        return account.User(email)
     else:
         return None
 

@@ -1,18 +1,13 @@
-version: '3'
-
-services:
-  web:
-    restart: always
-    build: ./web
-    ports:
-      - '5000:5000'
-    volumes:
-      - ./web:/app/web
-    links:
-      - db
-  db:
-    image: mongo:3.6
-    ports:
-      - '27017:27017'
-    volumes:
-      - ./db/data:/data/db
+web:
+  build: ./web
+  command: python -u undepress/app.py
+  ports:
+    - '5000:5000'
+  volumes:
+    - ./web:/app/web
+  links:
+    - db
+db:
+  image: mongo:3.6
+  volumes:
+    - ./db/data:/data/db

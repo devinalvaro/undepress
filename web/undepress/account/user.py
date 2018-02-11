@@ -1,5 +1,5 @@
 class User():
-    def __init__(self, email, active):
+    def __init__(self, email, active=True):
         self.email = email
         self.active = active
 
