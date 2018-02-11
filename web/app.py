@@ -1,8 +1,9 @@
-from flask import Flask, request, Response
-from flask_login import login_user, logout_user, LoginManager
+from flask import Flask, request, render_template
+from flask_login import login_required, LoginManager, logout_user
 from yaml import safe_load
 
-from src.models import User
+import src.account as account
+from src.account.models import User
 
 with open('config.yml', 'r') as file:
     config = safe_load(file)
@@ -19,34 +20,29 @@ def load_user(email):
     # TODO: implement db
     # return db.query.get(email)
 
-    pass
+    return User(email, True)
 
 
-@app.route('/user/login', methods=['GET', 'POST'])
+@app.route('/account/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    elif request.method == 'POST':
+        account.register(request.form['email'], request.form['password'])
+
+
+@app.route('/account/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return Response('''
-        <form action="" method="post">
-            <p><input type=text name=email>
-            <p><input type=password name=password>
-            <p><input type=submit value=Login>
-        </form>
-        ''')
+        return render_template('login.html')
     elif request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        user = User(email, password)
-        login_user(user)
-
-        return "Logged in"
+        account.login(request.form['email'], request.form['password'])
 
 
-@app.route('/user/logout')
+@app.route('/account/logout')
+@login_required
 def logout():
     logout_user()
-
-    return "Logged out"
 
 
 if __name__ == '__main__':
