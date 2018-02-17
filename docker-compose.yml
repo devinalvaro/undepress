@@ -1,6 +1,6 @@
 web:
   build: ./web
-  command: python -u undepress/app.py
+  command: python -u run.py
   ports:
     - '5000:5000'
   volumes:
