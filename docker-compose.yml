@@ -6,8 +6,8 @@ web:
   volumes:
     - ./web:/app/web
   links:
-    - db
-db:
+    - database
+database:
   image: mongo:3.6
   volumes:
-    - ./db/data:/data/db
+    - ./database/data:/data/db
