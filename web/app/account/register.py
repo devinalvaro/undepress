@@ -14,7 +14,7 @@ def register():
         name = request.form['name']
         address = request.form['address']
         phone = request.form['phone']
-        is_expert = False  # TODO: fix is_expert
+        is_expert = bool(request.form.get('is_expert'))
 
         account_db = AccountDb()
         if account_db.find_one(email=email):
