@@ -4,7 +4,7 @@ from . import account
 from ..db import AccountDb
 
 
-@account.route('/account/register', methods=['GET', 'POST'])
+@account.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html')

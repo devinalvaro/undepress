@@ -6,7 +6,7 @@ from .user import User
 from ..db import AccountDb
 
 
-@account.route('/account/login', methods=['GET', 'POST'])
+@account.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
