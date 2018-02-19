@@ -28,5 +28,6 @@ def register():
                 phone=phone,
                 is_expert=is_expert,
                 experience=None,
+                is_verified=None,
             )
             return "REGISTER_SUCCESS"
