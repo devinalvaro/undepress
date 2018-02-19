@@ -1,0 +1,55 @@
+[accounts]
+- user_id
+- email
+- password
+- name
+- address
+- phone
+- is_expert
++ experience
++ is_verified
+
+[socialmedias]
++ twitter_username
++ facebook_username
++ instagram_username
++ ...
+
+[userdata]
+- user_id
+- type: 'social_media'
+- socmed_post
+- timestamp
+
+- user_id
+- type: 'location'
+- location
+- timestamp
+
+- user_id
+- type: 'text_timing'
+- timestamp
+
+- user_id
+- type: 'call_timing'
+- timestamp
+
+[diagnosis]
+- diagnosis_id
+- diagnosis
+
+[labels]
+- label_id
+- label
+
+[chats]
+- sender_id
+- receiver_id
+- message
+- timestamp
+
+[monitorings]
+- user_id
+- symptom_number (1-9)
+- has_depression_symptoms
+- timestamp
