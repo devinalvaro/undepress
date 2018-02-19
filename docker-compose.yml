@@ -4,8 +4,6 @@ services:
   web:
     build: ./web
     command: python -u run.py
-    ports:
-      - '80:5000'
     volumes:
       - ./web:/app/web
     depends_on:
