@@ -1,6 +1,6 @@
 class User():
-    def __init__(self, email, active=True):
-        self.email = email
+    def __init__(self, user_id, active=True):
+        self.user_id = user_id
         self.active = active
 
     def is_authenticated(self):
@@ -13,4 +13,4 @@ class User():
         return False
 
     def get_id(self):
-        return self.email
+        return self.user_id

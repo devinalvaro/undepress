@@ -15,7 +15,6 @@ def login():
         password = request.form['password']
 
         account_db = AccountDb()
-
         result = account_db.find_one(email=email, password=password)
         if result:
             user = User(result['user_id'])

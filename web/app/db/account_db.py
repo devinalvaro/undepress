@@ -2,18 +2,17 @@ from .db import Db
 
 
 class AccountDb(Db):
-    account = Db.db.account
+    __accounts = Db._db.accounts
 
-    def find(self, email, password=None):
-        query = {'email': email}
-        if password:
-            query['password'] = password
+    def find(self, **query):
+        return self.__accounts.find(query)
 
-        return self.account.find_one(query)
+    def find_one(self, **query):
+        return self.__accounts.find_one(query)
 
-    def insert(self, email, password):
-        query = {'email': email}
-        if password:
-            query['password'] = password
+    def insert(self, **query):
+        query['user_id'] = self.get_size() + 1
+        self.__accounts.insert(query)
 
-        self.account.insert_one(query)
+    def get_size(self):
+        return self.find().count()

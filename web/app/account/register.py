@@ -17,7 +17,6 @@ def register():
         is_expert = False  # TODO: fix is_expert
 
         account_db = AccountDb()
-
         if account_db.find_one(email=email):
             return "REGISTER_EXIST"
         else:
