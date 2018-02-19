@@ -4,6 +4,7 @@ services:
   web:
     build: ./web
     command: python -u run.py
+    restart: always
     volumes:
       - ./web:/app/web
     depends_on:
