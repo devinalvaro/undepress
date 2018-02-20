@@ -6,6 +6,9 @@ class Db:
     _db = __mongo_client.undepress
     _collection = None
 
+    def get_size(self):
+        return self.find().count()
+
     def find(self, **query):
         return self._collection.find(query)
 
@@ -14,6 +17,3 @@ class Db:
 
     def insert(self, **query):
         self._collection.insert(query)
-
-    def get_size(self):
-        return self.find().count()
