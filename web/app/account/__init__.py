@@ -1,4 +1,6 @@
+from bson import json_util
 from flask import Blueprint, request
+from flask_login import current_user, login_required
 
 from ..db import AccountDb
 
@@ -12,8 +14,11 @@ from .logout import logout
 
 
 @account.route('/', methods=['GET'])
+@login_required
 def get():
-    user_id = request.args['user_id']
+    user_id = current_user.user_id
+    if user_id == 1:  # admin
+        user_id = int(request.args.get('user_id') or user_id)
 
     account_db = AccountDb()
-    return account_db.find(user_id=user_id)
+    return json_util.dumps(account_db.find(user_id=user_id))

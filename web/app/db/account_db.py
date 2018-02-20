@@ -6,4 +6,4 @@ class AccountDb(Db):
 
     def insert(self, **query):
         query['user_id'] = self.get_size() + 1
-        Db.insert(query)
+        super(AccountDb, self).insert(**query)

@@ -1,4 +1,6 @@
+from bson import json_util
 from flask import Blueprint, request
+from flask_login import current_user, login_required
 
 from ..db import SocmedDb
 
@@ -9,8 +11,11 @@ from .remove import remove
 
 
 @socmed.route('/', methods=['GET'])
-def get():
-    user_id = request.args['user_id']
+@login_required
+def index():
+    user_id = current_user.user_id
+    if user_id == 1:  # admin
+        user_id = int(request.args.get('user_id') or user_id)
 
     socmed_db = SocmedDb()
-    return socmed_db.find(user_id=user_id)
+    return json_util.dumps(socmed_db.find(user_id=user_id))
