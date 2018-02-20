@@ -10,9 +10,10 @@
 + is_verified
 
 [socialmedias]
-+ twitter_username
-+ facebook_username
-+ instagram_username
+- user_id
++ twitter
++ facebook
++ instagram
 + ...
 
 [userdata]
