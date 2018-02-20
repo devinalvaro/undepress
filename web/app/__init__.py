@@ -17,6 +17,9 @@ def create_app():
     from .account import account as account_blueprint
     app.register_blueprint(account_blueprint)
 
+    from .socmed import socmed as socmed_blueprint
+    app.register_blueprint(socmed_blueprint)
+
     return app
 
 
