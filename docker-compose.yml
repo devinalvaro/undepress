@@ -5,6 +5,8 @@ services:
     build: ./web
     command: python -u run.py
     restart: always
+    ports:
+      - '5000:5000'
     volumes:
       - ./web:/app/web
     depends_on:
