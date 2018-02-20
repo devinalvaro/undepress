@@ -1,0 +1,23 @@
+/account: [GET] return current user's personal information
+
+/account/login: [POST]
+    param: [email, password]
+    return: "ACCOUNT_LOGIN_SUCCESS" / "ACCOUNT_LOGIN_INVALID"
+
+/account/register: [POST]
+    param: [user_id, email, password, name, address, phone, is_expert, (experience), (is_verified)]
+    return: "ACCOUNT_REGISTER_SUCCESS" / "ACCOUNT_REGISTER_EXIST"
+
+/account/logout: [GET]
+
+--------------------------------
+
+/socmed: [GET] return current user's social media usernames
+
+/socmed/add: [POST] add social media usernames to user's document
+    param: [user_id, (twitter), (facebook), (instagram)]
+    return: "SOCMED_ADD_SUCCESS"
+
+/socmed/remove: [POST] remove social media usernames from user's document
+    param: [user_id, (twitter), (facebook), (instagram)]
+    return: "SOCMED_REMOVE_SUCCESS" / "SOCMED_REMOVE_UNEXIST"

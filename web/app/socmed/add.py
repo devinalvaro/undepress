@@ -25,4 +25,4 @@ def add():
             facebook=facebook,
             instagram=instagram)
 
-    return "SOCMED_INSERT_SUCCESS"
+    return "SOCMED_ADD_SUCCESS"
