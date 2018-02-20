@@ -2,11 +2,11 @@ from flask import Blueprint, request
 
 from ..db import AccountDb
 
+from .user import User
+
 from .login import login
 from .register import register
 from .logout import logout
-
-from .user import User
 
 account = Blueprint('account', __name__, url_prefix='/account')
 
