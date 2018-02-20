@@ -2,10 +2,10 @@ from flask import Blueprint, request
 
 from ..db import SocmedDb
 
+socmed = Blueprint('socmed', __name__, url_prefix='/socmed')
+
 from .add import add
 from .remove import remove
-
-socmed = Blueprint('socmed', __name__, url_prefix='/socmed')
 
 
 @socmed.route('/', methods=['GET'])

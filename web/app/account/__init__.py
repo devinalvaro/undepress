@@ -4,11 +4,11 @@ from ..db import AccountDb
 
 from .user import User
 
+account = Blueprint('account', __name__, url_prefix='/account')
+
 from .login import login
 from .register import register
 from .logout import logout
-
-account = Blueprint('account', __name__, url_prefix='/account')
 
 
 @account.route('/', methods=['GET'])
