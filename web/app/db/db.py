@@ -17,3 +17,9 @@ class Db:
 
     def insert(self, **query):
         self._collection.insert(query)
+
+    def set(self, query, **update):
+        self._collection.update(query, {'$set': update})
+
+    def unset(self, query, **update):
+        self._collection.update(query, {'$unset': update})
