@@ -6,4 +6,5 @@ from . import account
 @login_required
 def logout():
     logout_user()
-    return "LOGOUT_SUCCESS"
+
+    return "ACCOUNT_LOGOUT_SUCCESS"

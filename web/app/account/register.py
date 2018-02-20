@@ -18,7 +18,7 @@ def register():
 
         account_db = AccountDb()
         if account_db.find_one(email=email):
-            return "REGISTER_EXIST"
+            return "ACCOUNT_REGISTER_EXIST"
         else:
             account_db.insert(
                 email=email,
@@ -30,4 +30,5 @@ def register():
                 experience=None,
                 is_verified=None,
             )
-            return "REGISTER_SUCCESS"
+
+            return "ACCOUNT_REGISTER_SUCCESS"

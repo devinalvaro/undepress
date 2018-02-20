@@ -19,6 +19,7 @@ def login():
         if result:
             user = User(result['user_id'])
             login_user(user)
-            return "LOGIN_SUCCESS"
+
+            return "ACCOUNT_LOGIN_SUCCESS"
         else:
-            return "LOGIN_INVALID"
+            return "ACCOUNT_LOGIN_INVALID"
