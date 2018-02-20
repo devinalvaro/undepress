@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from os import urandom
 
+from config import Config
 from .account import User
 from .db import AccountDb
 
@@ -10,7 +11,8 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = urandom(24)
+    app.config.from_object(Config)
+    Config.init_app(app)
 
     login_manager.init_app(app)
 

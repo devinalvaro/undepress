@@ -1,5 +1,5 @@
 from bson import json_util
-from flask import Blueprint, request
+from flask import Blueprint, current_app as app, request
 from flask_login import current_user, login_required
 
 from ..db import AccountDb
@@ -17,7 +17,7 @@ from .logout import logout
 @login_required
 def get():
     user_id = current_user.user_id
-    if user_id == 1:  # admin
+    if user_id == app.config['ADMIN_ID']:
         user_id = int(request.args.get('user_id') or user_id)
 
     account_db = AccountDb()
