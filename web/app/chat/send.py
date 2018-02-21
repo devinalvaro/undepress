@@ -15,6 +15,8 @@ def send():
     timestamp = datetime.utcnow()
 
     chat_db = ChatDb()
+    if not chat_db.find(sender_id=sender_id, receiver_id=receiver_id):
+        chat_db.insert(sender_id=sender_id, receiver_id=receiver_id)
     chat_db.push(
         dict(sender_id=sender_id, receiver_id=receiver_id),
         messages=dict(message=message, timestamp=timestamp))
