@@ -52,11 +52,9 @@
 [chats]
 - sender_id
 - receiver_id
-- message
-- timestamp
+- messages: [message, timestamp]
 
 [monitorings]
 - user_id
-- symptom_number (1-9)
-- has_depression_symptoms
+- symptom_number: 1..9
 - timestamp

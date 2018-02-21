@@ -23,3 +23,6 @@ class Db:
 
     def unset(self, query, **update):
         self._collection.update(query, {'$unset': update})
+
+    def push(self, query, **update):
+        self._collection.update(query, {'$push': update})

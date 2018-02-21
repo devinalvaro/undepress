@@ -30,3 +30,12 @@
 /userdata/add: [POST] add user's data
     param: [user_id, data_type, data, timestamp]
     return: "USERDATA_ADD_SUCCESS"
+
+--------------------------------
+
+/chat: [GET] return current user's chat with sender_id
+    param: [sender_id]
+
+/chat/send: [POST] send chat between sender and receiver
+    param: [receiver_id, message]
+    return: "CHAT_SEND_SUCCESS"
