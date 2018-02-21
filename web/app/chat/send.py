@@ -2,11 +2,11 @@ from datetime import datetime
 from flask import request
 from flask_login import current_user, login_required
 
-from . import userdata
+from . import chat
 from ..db import ChatDb
 
 
-@userdata.route('/send', methods=['POST'])
+@chat.route('/send', methods=['POST'])
 @login_required
 def send():
     sender_id = current_user.user_id
