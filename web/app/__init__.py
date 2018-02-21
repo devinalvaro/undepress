@@ -22,6 +22,9 @@ def create_app():
     from .socmed import socmed as socmed_blueprint
     app.register_blueprint(socmed_blueprint)
 
+    from .userdata import userdata as userdata_blueprint
+    app.register_blueprint(userdata_blueprint)
+
     return app
 
 

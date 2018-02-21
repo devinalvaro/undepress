@@ -21,3 +21,12 @@
 /socmed/remove: [POST] remove social media usernames from user's document
     param: [user_id, (twitter), (facebook), (instagram)]
     return: "SOCMED_REMOVE_SUCCESS" / "SOCMED_REMOVE_UNEXIST"
+
+--------------------------------
+
+/userdata: [GET] return current user's data
+    param: [data_type]
+
+/userdata/add: [POST] add user's data
+    param: [user_id, data_type, data, timestamp]
+    return: "USERDATA_ADD_SUCCESS"

@@ -18,21 +18,27 @@
 
 [userdata]
 - user_id
-- type: 'social_media'
-- socmed_post
+- data_id
+- data_type: 'social_media'
+- data
 - timestamp
 
 - user_id
-- type: 'location'
-- location
+- data_id
+- data_type: 'location'
+- data
 - timestamp
 
 - user_id
-- type: 'text_timing'
+- data_id
+- data_type: 'text_timing'
+- data
 - timestamp
 
 - user_id
-- type: 'call_timing'
+- data_id
+- data_type: 'call_timing'
+- data
 - timestamp
 
 [diagnosis]
