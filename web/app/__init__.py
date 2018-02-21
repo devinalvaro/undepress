@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-from os import urandom
 
 from config import Config
 from .account import User
@@ -24,6 +23,9 @@ def create_app():
 
     from .userdata import userdata as userdata_blueprint
     app.register_blueprint(userdata_blueprint)
+
+    from .chat import chat as chat_blueprint
+    app.register_blueprint(chat_blueprint)
 
     return app
 

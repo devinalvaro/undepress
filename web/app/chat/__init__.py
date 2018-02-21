@@ -1,6 +1,6 @@
 from bson import json_util
 from flask import Blueprint, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from ..db import ChatDb
 
@@ -10,6 +10,7 @@ from .send import send
 
 
 @chat.route('/', methods=['GET'])
+@login_required
 def index():
     sender_id = int(request.args['sender_id'])
     receiver_id = current_user.user_id

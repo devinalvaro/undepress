@@ -6,7 +6,7 @@ from ..db import SocmedDb
 
 @socmed.route('/remove', methods=['POST'])
 def remove():
-    user_id = request.form['user_id']
+    user_id = int(request.form['user_id'])
     twitter = request.form.get('twitter')
     facebook = request.form.get('facebook')
     instagram = request.form.get('instagram')
