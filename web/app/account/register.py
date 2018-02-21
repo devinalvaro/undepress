@@ -17,7 +17,7 @@ def register():
     is_expert = bool(request.form.get('is_expert'))
 
     account_db = AccountDb()
-    if account_db.find_one(email=email):
+    if account_db.find(email=email):
         return "ACCOUNT_REGISTER_EXIST"
     else:
         # TODO: salt password
