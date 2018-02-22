@@ -11,11 +11,10 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
 
-    email = request.form['email']
-    password = request.form['password']
+    form_data = get_form_data(request)
 
     account_db = AccountDb()
-    result = account_db.find_one(email=email, password=password)
+    result = account_db.find_one(form_data)
     if result:
         user = User(result['user_id'])
         login_user(user)
@@ -23,3 +22,7 @@ def login():
         return "ACCOUNT_LOGIN_SUCCESS"
     else:
         return "ACCOUNT_LOGIN_INVALID"
+
+
+def get_form_data(request):
+    return dict(email=request.form['email'], password=request.form['password'])

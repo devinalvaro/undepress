@@ -9,24 +9,23 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')
 
-    email = request.form['email']
-    password = request.form['password']
-    name = request.form['name']
-    address = request.form['address']
-    phone = request.form['phone']
-    is_expert = bool(request.form.get('is_expert'))
+    form_data = get_form_data(request)
 
     account_db = AccountDb()
-    if account_db.find(email=email):
+    if account_db.find(email=form_data['email']):
         return "ACCOUNT_REGISTER_EXIST"
     else:
         # TODO: salt password
-        account_db.insert(
-            email=email,
-            password=password,
-            name=name,
-            address=address,
-            phone=phone,
-            is_expert=is_expert)
+        account_db.insert(form_data)
 
         return "ACCOUNT_REGISTER_SUCCESS"
+
+
+def get_form_data(request):
+    return dict(
+        email=request.form['email'],
+        password=request.form['password'],
+        name=request.form['name'],
+        address=request.form['address'],
+        phone=request.form['phone'],
+        is_expert=bool(request.form.get('email')))

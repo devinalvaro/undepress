@@ -9,16 +9,28 @@ from ..db import ChatDb
 @chat.route('/send', methods=['POST'])
 @login_required
 def send():
-    sender_id = current_user.user_id
-    receiver_id = int(request.form['receiver_id'])
-    message = request.form['message']
-    timestamp = datetime.utcnow()
+    form_data = get_form_data(request)
 
     chat_db = ChatDb()
-    if not chat_db.find(sender_id=sender_id, receiver_id=receiver_id):
-        chat_db.insert(sender_id=sender_id, receiver_id=receiver_id)
+    if not chat_db.find(
+            sender_id=form_data['sender_id'],
+            receiver_id=form_data['receiver_id']):
+        chat_db.insert(
+            sender_id=form_data['sender_id'],
+            receiver_id=form_data['receiver_id'])
     chat_db.push(
-        dict(sender_id=sender_id, receiver_id=receiver_id),
-        messages=dict(message=message, timestamp=timestamp))
+        dict(
+            sender_id=form_data['sender_id'],
+            receiver_id=form_data['receiver_id']),
+        messages=dict(
+            message=form_data['message'], timestamp=form_data['timestamp']))
 
     return "CHAT_SEND_SUCCESS"
+
+
+def get_form_data(request):
+    return dict(
+        sender_id=current_user.user_id,
+        receiver_id=int(request.form['receiver_id']),
+        message=request.form['message'],
+        timestamp=datetime.utcnow())

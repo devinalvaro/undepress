@@ -12,11 +12,16 @@ from .send import send
 @chat.route('/', methods=['GET'])
 @login_required
 def index():
-    sender_id = int(request.args['sender_id'])
-    receiver_id = current_user.user_id
+    form_data = get_form_data(request)
 
     chat_db = ChatDb()
     return json_util.dumps(
-        chat_db.find(sender_id=sender_id, receiver_id=receiver_id))
+        chat_db.find(form_data))
 
     return "CHAT_SEND_SUCCESS"
+
+
+def get_form_data(request):
+    return dict(
+        sender_id=int(request.args['sender_id']),
+        receiver_id=current_user.user_id)

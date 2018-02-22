@@ -8,23 +8,24 @@ from ..db import SocmedDb
 @socmed.route('/add', methods=['POST'])
 @login_required
 def add():
-    user_id = int(request.form['user_id'])
-    twitter = request.form.get('twitter')
-    facebook = request.form.get('facebook')
-    instagram = request.form.get('instagram')
+    form_data = get_form_data(request)
 
     socmed_db = SocmedDb()
-    if socmed_db.find(user_id=user_id):
+    if socmed_db.find(user_id=form_data['user_id']):
         socmed_db.set(
-            dict(user_id=user_id),
-            twitter=twitter,
-            facebook=facebook,
-            instagram=instagram)
+            dict(user_id=form_data['user_id']),
+            twitter=form_data['twitter'],
+            facebook=form_data['facebook'],
+            instagram=form_data['instagram'])
     else:
-        socmed_db.insert(
-            user_id=user_id,
-            twitter=twitter,
-            facebook=facebook,
-            instagram=instagram)
+        socmed_db.insert(form_data)
 
     return "SOCMED_ADD_SUCCESS"
+
+
+def get_form_data(request):
+    return dict(
+        user_id=int(request.form['user_id']),
+        twitter=request.form.get('twitter'),
+        facebook=request.form.get('facebook'),
+        instagram=request.form.get('instagram'))
