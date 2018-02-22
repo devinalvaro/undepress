@@ -16,7 +16,7 @@
 + instagram
 + ...
 
-[userdata]
+[userdata]: Preprocessed
 - user_id
 - data_id
 - data_type: 'social_media'
@@ -45,16 +45,31 @@
 - diagnosis_id
 - diagnosis
 
-[labels]
-- label_id
-- label
-
 [monitorings]
 - user_id
-- symptom_number: 1..9
+- symptom_number: 1..9 (multi value)
 - timestamp
 
 [chats]
 - sender_id
 - receiver_id
 - messages: [message, timestamp]
+
+## Data for Detection
+[Training Data]:
+- Training ID
+- Result: Depression or Not
+- Symptom 1: T/F
+- Symptom 2: T/F
+- Symptom 3: T/F
+.
+.
+- Symptom N: T/F
+
+[Senti Word Labels]:
+- label_id: Symptom Number (Indicator Number)
+- label
+
+[Indicator]:
+- Indicator_id
+- Indicator description
