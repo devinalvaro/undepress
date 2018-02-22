@@ -41,12 +41,9 @@
 - data
 - timestamp
 
-[diagnosis]
-- diagnosis_id
-- diagnosis
-
-[monitorings]
+[monitorings]: diagnosis detail
 - user_id
+- depression status: yes/no
 - symptom_number: 1..9 (multi value)
 - timestamp
 
@@ -54,6 +51,16 @@
 - sender_id
 - receiver_id
 - messages: [message, timestamp]
+
+[appointment]
+- appointment_id
+- patient_id
+- doctor_id
+- timestamp
+- location
+- issue description
+- status: approved by doctor, canceled by user, refused by doctor
+
 
 ## Data for Detection
 [Training Data]:
@@ -69,6 +76,7 @@
 [Senti Word Labels]:
 - label_id: Symptom Number (Indicator Number)
 - label
+- indicator_id
 
 [Indicator]:
 - Indicator_id
