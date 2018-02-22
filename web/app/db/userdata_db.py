@@ -5,5 +5,5 @@ class UserdataDb(Db):
     _collection = Db._db.userdata
 
     def insert(self, **query):
-        query['data_id'] = self.get_size() + 1
+        self.put_id(query, 'data_id')
         super(UserdataDb, self).insert(**query)

@@ -1,37 +1,36 @@
 from flask import Flask
-from flask_login import LoginManager
 
 from config import Config
-from .account import User
-from .db import AccountDb
+from .login_manager import login_manager
 
-login_manager = LoginManager()
+from .account import account as account_blueprint
+from .socmed import socmed as socmed_blueprint
+from .userdata import userdata as userdata_blueprint
+from .chat import chat as chat_blueprint
 
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
-    Config.init_app(app)
 
-    login_manager.init_app(app)
+    init_config(app)
+    init_login_manager(app)
 
-    from .account import account as account_blueprint
-    app.register_blueprint(account_blueprint)
-
-    from .socmed import socmed as socmed_blueprint
-    app.register_blueprint(socmed_blueprint)
-
-    from .userdata import userdata as userdata_blueprint
-    app.register_blueprint(userdata_blueprint)
-
-    from .chat import chat as chat_blueprint
-    app.register_blueprint(chat_blueprint)
+    register_blueprints(app)
 
     return app
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    account_db = AccountDb()
-    if account_db.find(user_id=user_id):
-        return User(user_id)
+def init_config(app):
+    app.config.from_object(Config)
+    Config.init_app(app)
+
+
+def init_login_manager(app):
+    login_manager.init_app(app)
+
+
+def register_blueprints(app):
+    app.register_blueprint(account_blueprint)
+    app.register_blueprint(socmed_blueprint)
+    app.register_blueprint(userdata_blueprint)
+    app.register_blueprint(chat_blueprint)

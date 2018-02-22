@@ -14,6 +14,7 @@ from .remove import remove
 @login_required
 def index():
     user_id = current_user.user_id
+
     if user_id == app.config['ADMIN_ID']:
         user_id = int(request.args.get('user_id') or user_id)
 

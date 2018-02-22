@@ -17,6 +17,7 @@ from .logout import logout
 @login_required
 def get():
     user_id = current_user.user_id
+
     if user_id == app.config['ADMIN_ID']:
         user_id = int(request.args.get('user_id') or user_id)
 

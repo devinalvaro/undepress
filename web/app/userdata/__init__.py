@@ -13,9 +13,10 @@ from .add import add
 @login_required
 def index():
     user_id = current_user.user_id
+    data_type = request.args.get('type')
+
     if user_id == app.config['ADMIN_ID']:
         user_id = int(request.args.get('user_id') or user_id)
-    data_type = request.args.get('type')
 
     userdata_db = UserdataDb()
     return json_util.dumps(

@@ -6,6 +6,9 @@ class Db:
     _db = __mongo_client.undepress
     _collection = None
 
+    def put_id(self, query, key):
+        query[key] = self.get_size() + 1
+
     def get_size(self):
         return self.find().count()
 
