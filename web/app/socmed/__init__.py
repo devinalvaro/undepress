@@ -16,7 +16,7 @@ def index():
     form_data = get_form_data(request)
 
     socmed_db = SocmedDb()
-    return json_util.dumps(socmed_db.find(form_data))
+    return json_util.dumps(socmed_db.find(**form_data))
 
 
 def get_form_data(request):

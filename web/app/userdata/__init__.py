@@ -15,7 +15,7 @@ def index():
     form_data = get_form_data(request)
 
     userdata_db = UserdataDb()
-    return json_util.dumps(userdata_db.find(form_data))
+    return json_util.dumps(userdata_db.find(**form_data))
 
 
 def get_form_data(requst):

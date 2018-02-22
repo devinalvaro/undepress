@@ -18,7 +18,7 @@ def get():
     form_data = get_form_data(request)
 
     account_db = AccountDb()
-    return json_util.dumps(account_db.find(form_data))
+    return json_util.dumps(account_db.find(**form_data))
 
 
 def get_form_data(request):

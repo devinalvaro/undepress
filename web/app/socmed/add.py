@@ -18,7 +18,7 @@ def add():
             facebook=form_data['facebook'],
             instagram=form_data['instagram'])
     else:
-        socmed_db.insert(form_data)
+        socmed_db.insert(**form_data)
 
     return "SOCMED_ADD_SUCCESS"
 

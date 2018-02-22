@@ -11,7 +11,7 @@ def add():
     form_data = get_form_data(request)
 
     userdata_db = UserdataDb()
-    userdata_db.insert(form_data)
+    userdata_db.insert(**form_data)
 
     return "USERDATA_ADD_SUCCESS"
 

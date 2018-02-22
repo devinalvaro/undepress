@@ -16,7 +16,7 @@ def index():
 
     chat_db = ChatDb()
     return json_util.dumps(
-        chat_db.find(form_data))
+        chat_db.find(**form_data))
 
     return "CHAT_SEND_SUCCESS"
 

@@ -14,7 +14,7 @@ def login():
     form_data = get_form_data(request)
 
     account_db = AccountDb()
-    result = account_db.find_one(form_data)
+    result = account_db.find_one(**form_data)
     if result:
         user = User(result['user_id'])
         login_user(user)

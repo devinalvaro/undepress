@@ -16,7 +16,7 @@ def register():
         return "ACCOUNT_REGISTER_EXIST"
     else:
         # TODO: salt password
-        account_db.insert(form_data)
+        account_db.insert(**form_data)
 
         return "ACCOUNT_REGISTER_SUCCESS"
 
