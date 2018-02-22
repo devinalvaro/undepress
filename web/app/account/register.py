@@ -12,7 +12,7 @@ def register():
     form_data = get_form_data(request)
 
     account_db = AccountDb()
-    if account_db.find(email=form_data['email']):
+    if account_db.find_one(email=form_data['email']):
         return "ACCOUNT_REGISTER_EXIST"
     else:
         # TODO: salt password

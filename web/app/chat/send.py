@@ -12,7 +12,7 @@ def send():
     form_data = get_form_data(request)
 
     chat_db = ChatDb()
-    if not chat_db.find(
+    if not chat_db.find_one(
             sender_id=form_data['sender_id'],
             receiver_id=form_data['receiver_id']):
         chat_db.insert(

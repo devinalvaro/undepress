@@ -11,7 +11,7 @@ def remove():
     form_data = get_form_data(request)
 
     socmed_db = SocmedDb()
-    if socmed_db.find(user_id=form_data['user_id']):
+    if socmed_db.find_one(user_id=form_data['user_id']):
         socmed_db.unset(
             dict(user_id=form_data['user_id']),
             twitter=form_data['twitter'],
