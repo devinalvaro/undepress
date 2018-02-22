@@ -13,15 +13,14 @@ from .send import send
 @login_required
 def index():
     form_data = get_form_data(request)
-
-    chat_db = ChatDb()
-    return json_util.dumps(
-        chat_db.find(**form_data))
-
-    return "CHAT_SEND_SUCCESS"
+    return json_util.dumps(get_chat_data(form_data))
 
 
 def get_form_data(request):
     return dict(
         sender_id=int(request.args['sender_id']),
         receiver_id=current_user.user_id)
+
+
+def get_chat_data(form_data):
+    return ChatDb.find(**form_data)

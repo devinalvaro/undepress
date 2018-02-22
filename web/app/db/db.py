@@ -6,26 +6,34 @@ class Db:
     _db = __mongo_client.undepress
     _collection = None
 
-    def put_id(self, query, key):
-        query[key] = self.get_size() + 1
+    @staticmethod
+    def put_id(query, key):
+        query[key] = Db.get_size() + 1
 
-    def get_size(self):
-        return self.find().count()
+    @staticmethod
+    def get_size():
+        return Db.find().count()
 
-    def find(self, **query):
-        return self._collection.find(query)
+    @staticmethod
+    def find(**query):
+        return Db._collection.find(query)
 
-    def find_one(self, **query):
-        return self._collection.find_one(query)
+    @staticmethod
+    def find_one(**query):
+        return Db._collection.find_one(query)
 
-    def insert(self, **query):
-        self._collection.insert(query)
+    @staticmethod
+    def insert(**query):
+        Db._collection.insert(query)
 
-    def set(self, query, **update):
-        self._collection.update(query, {'$set': update})
+    @staticmethod
+    def set(query, **update):
+        Db._collection.update(query, {'$set': update})
 
-    def unset(self, query, **update):
-        self._collection.update(query, {'$unset': update})
+    @staticmethod
+    def unset(query, **update):
+        Db._collection.update(query, {'$unset': update})
 
-    def push(self, query, **update):
-        self._collection.update(query, {'$push': update})
+    @staticmethod
+    def push(query, **update):
+        Db._collection.update(query, {'$push': update})

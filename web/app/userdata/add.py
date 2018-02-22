@@ -9,9 +9,7 @@ from ..db import UserdataDb
 @login_required
 def add():
     form_data = get_form_data(request)
-
-    userdata_db = UserdataDb()
-    userdata_db.insert(**form_data)
+    insert_userdata(form_data)
 
     return "USERDATA_ADD_SUCCESS"
 
@@ -22,3 +20,7 @@ def get_form_data(request):
         data_type=request.form['data_type'],
         data=request.form['data'],
         timestamp=request.form['timestamp'])
+
+
+def insert_userdata(form_data):
+    UserdataDb.insert(**form_data)

@@ -14,9 +14,7 @@ from .remove import remove
 @login_required
 def index():
     form_data = get_form_data(request)
-
-    socmed_db = SocmedDb()
-    return json_util.dumps(socmed_db.find(**form_data))
+    return json_util.dumps(get_socmed_data(form_data))
 
 
 def get_form_data(request):
@@ -25,3 +23,7 @@ def get_form_data(request):
         user_id = int(request.args.get('user_id') or user_id)
 
     return dict(user_id=user_id)
+
+
+def get_socmed_data(form_data):
+    return SocmedDb.find(**form_data)

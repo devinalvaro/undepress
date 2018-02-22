@@ -14,11 +14,9 @@ from .user import User
 
 @account.route('/', methods=['GET'])
 @login_required
-def get():
+def index():
     form_data = get_form_data(request)
-
-    account_db = AccountDb()
-    return json_util.dumps(account_db.find(**form_data))
+    return json_util.dumps(get_account_data(form_data))
 
 
 def get_form_data(request):
@@ -27,3 +25,7 @@ def get_form_data(request):
         user_id = int(request.args.get('user_id') or user_id)
 
     return dict(user_id=user_id)
+
+
+def get_account_data(form_data):
+    return AccountDb.find(**form_data)
