@@ -2,14 +2,14 @@ from bson import json_util
 from flask import Blueprint, current_app as app, request
 from flask_login import current_user, login_required
 
-from ...db import AccountDb
+from ...lib.db import AccountDb
 
 account = Blueprint('account', __name__, url_prefix='/account')
 
 from .login import login
 from .logout import logout
 from .register import register
-from .user import User
+from ...lib.user import User
 
 
 @account.route('/', methods=['GET'])

@@ -2,7 +2,7 @@ from bson import json_util
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ...db import ChatDb
+from ...lib.db import ChatDb
 
 chat = Blueprint('chat', __name__, url_prefix='/chat')
 

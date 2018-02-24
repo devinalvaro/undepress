@@ -2,7 +2,7 @@ from flask import request
 from flask_login import login_required
 
 from . import socmed
-from ...db import SocmedDb
+from ...lib.db import SocmedDb
 
 
 @socmed.route('/remove', methods=['POST'])

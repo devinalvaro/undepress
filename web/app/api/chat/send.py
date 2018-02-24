@@ -2,7 +2,7 @@ from flask import request
 from flask_login import current_user, login_required
 
 from . import chat
-from ...db import ChatDb
+from ...lib.db import ChatDb
 
 
 @chat.route('/send', methods=['POST'])

@@ -2,7 +2,7 @@ from flask import request
 from flask_login import login_required
 
 from . import userdata
-from ...db import UserdataDb
+from ...lib.db import UserdataDb
 
 
 @userdata.route('/add', methods=['POST'])

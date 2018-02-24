@@ -2,7 +2,7 @@ from bson import json_util
 from flask import Blueprint, current_app as app, request
 from flask_login import current_user, login_required
 
-from ...db import SocmedDb
+from ...lib.db import SocmedDb
 
 socmed = Blueprint('socmed', __name__, url_prefix='/socmed')
 

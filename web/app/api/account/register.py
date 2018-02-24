@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from . import account
-from ...db import AccountDb
+from ...lib.db import AccountDb
 
 
 @account.route('/register', methods=['GET', 'POST'])

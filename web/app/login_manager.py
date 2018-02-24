@@ -1,7 +1,7 @@
 from flask_login import LoginManager
 
-from .account import User
-from .db import AccountDb
+from .lib.user import User
+from .lib.db import AccountDb
 
 login_manager = LoginManager()
 
