@@ -39,3 +39,27 @@
 /chat/send: [POST] send chat between sender and receiver
     param: [receiver_id, message]
     return: "CHAT_SEND_SUCCESS"
+
+--------------------------------
+
+/trainingdata: [GET] return training data
+
+/trainingdata/add: [POST] add a training datum to training data
+    param: [label, symptom_1, symptom_2, ..., symptoms_9]
+    return: "TRAININGDATA_ADD_SUCCESS"
+
+--------------------------------
+
+/appointment: [GET] return current user's appointments
+
+/appointment/add: [POST] add an appointment
+    param: [patient_id, expert_id, timestamp, location, issue_description, status]
+    return: "APPOINTMENT_ADD_SUCCESS"
+
+--------------------------------
+
+/monitoring: [GET] return current user's monitoring
+
+/monitoring/add: [POST] add a monitoring
+    param: [user_id, [symptom_numbers], timestamp]
+    return: "MONITORING_ADD_SUCCESS"
