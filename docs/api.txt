@@ -5,35 +5,32 @@
     return: "ACCOUNT_LOGIN_SUCCESS" / "ACCOUNT_LOGIN_INVALID"
 
 /account/register: [POST]
-    param: [user_id, email, password, name, address, phone, is_expert, (experience), (is_verified)]
+    param: [user_id, email, password, name, address, phone, is_expert]
     return: "ACCOUNT_REGISTER_SUCCESS" / "ACCOUNT_REGISTER_EXIST"
 
++/account/set: [POST] set current user's personal informations
++    param: [(email), (password), (name), (address), (phone),
++           (is_expert), (is_expert_verified), (expert_description), (expert_experience), (exper_location)]
++    return: "ACCOUNT_SET_SUCCESS"
+
 /account/logout: [GET]
+    return: "ACCOUNT_LOGOUT_SUCCESS"
 
 --------------------------------
 
-/socmed: [GET] return current user's social media usernames
+/appointment: [GET] return current user's appointments
 
-/socmed/add: [POST] add social media usernames to user's document
-    param: [user_id, (twitter), (facebook), (instagram)]
-    return: "SOCMED_ADD_SUCCESS"
+/appointment/add: [POST] add an appointment
+    param: [expert_id, timestamp, location, issue_description, status]
+    return: "APPOINTMENT_ADD_SUCCESS"
 
-/socmed/remove: [POST] remove social media usernames from user's document
-    param: [user_id, (twitter), (facebook), (instagram)]
-    return: "SOCMED_REMOVE_SUCCESS" / "SOCMED_REMOVE_UNEXIST"
-
---------------------------------
-
-/userdata: [GET] return current user's data
-    param: [data_type]
-
-/userdata/add: [POST] add user's data
-    param: [user_id, data_type, data, timestamp]
-    return: "USERDATA_ADD_SUCCESS"
++/appointment/set: [POST] set appointment status
++    param: [status]
++    return: "APPOINTMENT_SET_SUCCESS"
 
 --------------------------------
 
-/chat: [GET] return current user's chat with sender_id
+/chat: [GET] return current user's chats with sender_id
     param: [sender_id]
 
 /chat/send: [POST] send chat between sender and receiver
@@ -42,24 +39,41 @@
 
 --------------------------------
 
-/trainingdata: [GET] return training data
-
-/trainingdata/add: [POST] add a training datum to training data
-    param: [label, symptom_1, symptom_2, ..., symptoms_9]
-    return: "TRAININGDATA_ADD_SUCCESS"
-
---------------------------------
-
-/appointment: [GET] return current user's appointments
-
-/appointment/add: [POST] add an appointment
-    param: [patient_id, expert_id, timestamp, location, issue_description, status]
-    return: "APPOINTMENT_ADD_SUCCESS"
++/detection: [POST] return current user's depression detection
 
 --------------------------------
 
 /monitoring: [GET] return current user's monitoring
 
-/monitoring/add: [POST] add a monitoring
-    param: [user_id, [symptom_numbers], timestamp]
-    return: "MONITORING_ADD_SUCCESS"
+x/monitoring/add: [POST] add a monitoring
+x    param: [[symptom_numbers], timestamp]
+x    return: "MONITORING_ADD_SUCCESS"
+
+--------------------------------
+
+/socmed: [GET] return current user's social media usernames
+
+/socmed/add: [POST] add current user's social media usernames
+    param: [(twitter), (facebook), (instagram)]
+    return: "SOCMED_ADD_SUCCESS"
+
+~/socmed/set: [POST] set current user's social media usernames
+~    param: [(twitter), (facebook), (instagram)]
+~    return: "SOCMED_SET_SUCCESS"
+
+--------------------------------
+
+x/trainingdata: [GET] return training data
+
+x/trainingdata/add: [POST] add a training data
+x    param: [label, symptom_1, symptom_2, ..., symptoms_9]
+x    return: "TRAININGDATA_ADD_SUCCESS"
+
+--------------------------------
+
+x/userdata: [GET] return current user's data
+x    param: [data_type]
+
+x/userdata/add: [POST] add current user's data
+x    param: [data_type, data, timestamp]
+x    return: "USERDATA_ADD_SUCCESS"

@@ -10,6 +10,24 @@
 + experience
 + is_verified
 
+[appointments]
+- patient_id
+- expert_id
+- timestamp
+- location
+- issue description
+- status: {'approved by expert', 'canceled by user', 'refused by expert'}
+
+[chats]
+- sender_id
+- receiver_id
+- messages: [message, timestamp]
+
+[monitorings]
+- user_id
+- symptom_numbers: [1, 4, ..., 7, 9]
+- timestamp
+
 [socialmedias]
 - user_id
 + twitter
@@ -17,45 +35,12 @@
 + instagram
 + ...
 
-[userdata]
-- user_id
-- data_type: 'social_media'
-- data
-- timestamp
-
-- user_id
-- data_type: 'location'
-- data
-- timestamp
-
-- user_id
-- data_type: 'text_timing'
-- data
-- timestamp
-
-- user_id
-- data_type: 'call_timing'
-- data
-- timestamp
-
-[monitorings]
-- user_id
-- symptom_numbers: [1, 2, ..., 8, 9]
-- timestamp
-
-[chats]
-- sender_id
-- receiver_id
-- messages: [message, timestamp]
-
-[appointments]
-- patient_id
-- expert_id
-- timestamp
-- location
-- issue description
-- status: approved by expert, canceled by user, refused by expert
-
 [trainingdata]:
 - label: True/False (depressed or not)
 - symptoms: [<int>, <int>, ..., <int>]
+
+[userdata]
+- user_id
+- data_type: {'social_media', 'location', 'text_timing', 'call_timing'}
+- data
+- timestamp
