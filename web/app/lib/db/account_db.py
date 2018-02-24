@@ -8,3 +8,8 @@ class AccountDb(Db):
     def insert(**query):
         Db._put_id(query, 'user_id')
         Db.insert(**query)
+
+    @staticmethod
+    def set(query, **update):
+        Db._filter_none(update)
+        Db.insert(query, **update)

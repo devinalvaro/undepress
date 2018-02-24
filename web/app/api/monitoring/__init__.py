@@ -1,5 +1,5 @@
 from bson import json_util
-from flask import Blueprint, current_app as app, request
+from flask import Blueprint, request
 from flask_login import current_user, login_required
 
 from ...lib.db import MonitoringDb
@@ -17,8 +17,7 @@ def index():
 
 
 def get_form_data(request):
-    return dict(
-        user_id=current_user.user_id, data_type=request.args.get('type'))
+    return dict(user_id=current_user.user_id)
 
 
 def get_monitoring_data(form_data):

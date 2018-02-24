@@ -8,10 +8,10 @@
     param: [user_id, email, password, name, address, phone, is_expert]
     return: "ACCOUNT_REGISTER_SUCCESS" / "ACCOUNT_REGISTER_EXIST"
 
-+/account/set: [POST] set current user's personal informations
-+    param: [(email), (password), (name), (address), (phone),
-+           (is_expert), (is_expert_verified), (expert_description), (expert_experience), (exper_location)]
-+    return: "ACCOUNT_SET_SUCCESS"
+/account/set: [POST] set current user's personal informations
+    param: [(email), (password), (name), (address), (phone),
+           (is_expert), (is_expert_verified), (expert_description), (expert_experience), (expert_location)]
+    return: "ACCOUNT_SET_SUCCESS"
 
 /account/logout: [GET]
     return: "ACCOUNT_LOGOUT_SUCCESS"
@@ -24,9 +24,9 @@
     param: [expert_id, timestamp, location, issue_description, status]
     return: "APPOINTMENT_ADD_SUCCESS"
 
-+/appointment/set: [POST] set appointment status
-+    param: [status]
-+    return: "APPOINTMENT_SET_SUCCESS"
+/appointment/set: [POST] set appointment status
+    param: [patient_id/expert_id, status]
+    return: "APPOINTMENT_SET_SUCCESS"
 
 --------------------------------
 

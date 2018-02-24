@@ -15,11 +15,15 @@ def set():
 
 
 def get_form_data(request):
-    return dict(
-        user_id=current_user.user_id,
-        twitter=request.form.get('twitter'),
-        facebook=request.form.get('facebook'),
-        instagram=request.form.get('instagram'))
+    form_data = dict(
+        patient_id=request.form.get('patient_id'),
+        expert_id=request.form.get('expert_id'),
+        status=request.form['status'])
+
+    if not form_data['patient_id']:
+        form_data['patient_id'] = current_user.user_id
+    elif not form_data['expert_id']:
+        form_data['expert_id'] = current_user.user_id
 
 
 def set_socialmedia(form_data):
