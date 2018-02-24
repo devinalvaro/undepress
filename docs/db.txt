@@ -48,7 +48,7 @@
 - receiver_id
 - messages: [message, timestamp]
 
-[appointment]
+[appointments]
 - patient_id
 - expert_id
 - timestamp
