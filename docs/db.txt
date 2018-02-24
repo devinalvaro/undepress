@@ -49,18 +49,13 @@
 - messages: [message, timestamp]
 
 [appointment]
-- appointment_id
 - patient_id
-- doctor_id
+- expert_id
 - timestamp
 - location
 - issue description
-- status: approved by doctor, canceled by user, refused by doctor
+- status: approved by expert, canceled by user, refused by expert
 
 [trainingdata]:
-- training_id
 - label: True/False (depressed or not)
-- symptom 1: <int>
-- symptom 2: <int>
-...
-- symptom n: <int>
+- symptoms: [<int>, <int>, ..., <int>]
