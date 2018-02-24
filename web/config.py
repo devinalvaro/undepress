@@ -1,14 +1,14 @@
-from os import urandom
+from os import environ
 
 
 class Config:
-    ADMIN_ID = 1
-    SECRET_KEY = urandom(24)
-    TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN') or 'you-will-never-guess'
-	TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET') or 'you-will-never-guess'
-	TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY') or 'you-will-never-guess'
-	TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET') or 'you-will-never-guess'
-	
+    ADMIN_ID = int(environ.get('ADMIN_ID'))
+    SECRET_KEY = environ.get('SECRET_KEY')
+    TWITTER_ACCESS_TOKEN = environ.get('TWITTER_ACCESS_TOKEN')
+    TWITTER_ACCESS_SECRET = environ.get('TWITTER_ACCESS_SECRET')
+    TWITTER_CONSUMER_KEY = environ.get('TWITTER_CONSUMER_KEY')
+    TWITTER_CONSUMER_SECRET = environ.get('TWITTER_CONSUMER_SECRET')
+
     @staticmethod
     def init_app(app):
         pass

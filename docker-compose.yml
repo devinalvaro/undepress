@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - '80:5000'
+    env_file:
+      - ./web/web.env
     volumes:
       - ./web:/app/web
     depends_on:
