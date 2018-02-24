@@ -45,10 +45,6 @@
 
 /monitoring: [GET] return current user's monitoring
 
-x/monitoring/add: [POST] add a monitoring
-x    param: [[symptom_numbers], timestamp]
-x    return: "MONITORING_ADD_SUCCESS"
-
 --------------------------------
 
 /socmed: [GET] return current user's social media usernames
