@@ -4,9 +4,10 @@ from config import Config
 from .login_manager import login_manager
 
 from .account import account as account_blueprint
+from .chat import chat as chat_blueprint
+from .crawler import crawler as crawler_blueprint
 from .socmed import socmed as socmed_blueprint
 from .userdata import userdata as userdata_blueprint
-from .chat import chat as chat_blueprint
 
 
 def create_app():
@@ -31,6 +32,7 @@ def init_login_manager(app):
 
 def register_blueprints(app):
     app.register_blueprint(account_blueprint)
+    app.register_blueprint(chat_blueprint)
+    app.register_blueprint(crawler_blueprint)
     app.register_blueprint(socmed_blueprint)
     app.register_blueprint(userdata_blueprint)
-    app.register_blueprint(chat_blueprint)
