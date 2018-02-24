@@ -6,5 +6,5 @@ class AccountDb(Db):
 
     @staticmethod
     def insert(**query):
-        Db.put_id(query, 'user_id')
+        Db._put_id(query, 'user_id')
         Db.insert(**query)

@@ -7,12 +7,8 @@ class Db:
     _collection = None
 
     @staticmethod
-    def put_id(query, key):
-        query[key] = Db.get_size() + 1
-
-    @staticmethod
-    def get_size():
-        return Db.find().count()
+    def count(cursor):
+        return cursor.count()
 
     @staticmethod
     def find(**query):
@@ -27,6 +23,10 @@ class Db:
         Db._collection.insert(query)
 
     @staticmethod
+    def push(query, **update):
+        Db._collection.update(query, {'$push': update})
+
+    @staticmethod
     def set(query, **update):
         Db._collection.update(query, {'$set': update})
 
@@ -35,5 +35,9 @@ class Db:
         Db._collection.update(query, {'$unset': update})
 
     @staticmethod
-    def push(query, **update):
-        Db._collection.update(query, {'$push': update})
+    def _put_id(query, key):
+        query[key] = Db.count(Db.find()) + 1
+
+    @staticmethod
+    def _filter_none(query):
+        return dict((k, v) for k, v in query.items() if v is not None)

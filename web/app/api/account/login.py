@@ -13,7 +13,7 @@ def login():
 
     form_data = get_form_data(request)
     user_id = get_user_id(form_data)
-    if user_id:
+    if user_id is not None:
         login_user(User(user_id))
 
         return "ACCOUNT_LOGIN_SUCCESS"
