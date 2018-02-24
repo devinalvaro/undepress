@@ -25,7 +25,7 @@ def get_form_data(request):
 
 
 def is_expert(user_id):
-    return AccountDb.find(user_id=user_id)['is_expert']
+    return AccountDb.find_one(user_id=user_id)['is_expert']
 
 
 def get_appointment_data(form_data):
