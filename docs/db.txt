@@ -19,25 +19,21 @@
 
 [userdata]
 - user_id
-- data_id
 - data_type: 'social_media'
 - data
 - timestamp
 
 - user_id
-- data_id
 - data_type: 'location'
 - data
 - timestamp
 
 - user_id
-- data_id
 - data_type: 'text_timing'
 - data
 - timestamp
 
 - user_id
-- data_id
 - data_type: 'call_timing'
 - data
 - timestamp
