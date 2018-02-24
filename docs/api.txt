@@ -53,6 +53,6 @@
     param: [(twitter), (facebook), (instagram)]
     return: "SOCMED_ADD_SUCCESS"
 
-~/socmed/set: [POST] set current user's social media usernames
-~    param: [(twitter), (facebook), (instagram)]
-~    return: "SOCMED_SET_SUCCESS"
+/socmed/set: [POST] set current user's social media usernames
+    param: [(twitter), (facebook), (instagram)]
+    return: "SOCMED_SET_SUCCESS"

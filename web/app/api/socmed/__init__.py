@@ -7,7 +7,7 @@ from ...lib.db import SocmedDb
 socmed = Blueprint('socmed', __name__, url_prefix='/socmed')
 
 from .add import add
-from .remove import remove
+from .set import set
 
 
 @socmed.route('/', methods=['GET'])

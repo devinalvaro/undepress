@@ -5,16 +5,13 @@ from . import socmed
 from ...lib.db import SocmedDb
 
 
-@socmed.route('/remove', methods=['POST'])
+@socmed.route('/set', methods=['POST'])
 @login_required
-def remove():
+def set():
     form_data = get_form_data(request)
-    if does_document_exist(form_data):
-        unset_socialmedia(form_data)
+    set_socialmedia(form_data)
 
-        return "SOCMED_REMOVE_SUCCESS"
-    else:
-        return "SOCMED_REMOVE_UNEXIST"
+    return "SOCMED_SET_SUCCESS"
 
 
 def get_form_data(request):
@@ -25,12 +22,8 @@ def get_form_data(request):
         instagram=request.form.get('instagram'))
 
 
-def does_document_exist(form_data):
-    return SocmedDb.find_one(user_id=form_data['user_id'])
-
-
-def unset_socialmedia(form_data):
-    SocmedDb.unset(
+def set_socialmedia(form_data):
+    SocmedDb.set(
         dict(user_id=form_data['user_id']),
         twitter=form_data['twitter'],
         facebook=form_data['facebook'],
