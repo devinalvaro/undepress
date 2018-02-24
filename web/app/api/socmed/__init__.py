@@ -18,11 +18,7 @@ def index():
 
 
 def get_form_data(request):
-    user_id = current_user.user_id
-    if user_id == app.config['ADMIN_ID']:
-        user_id = int(request.args.get('user_id') or user_id)
-
-    return dict(user_id=user_id)
+    return dict(user_id=current_user.user_id)
 
 
 def get_socmed_data(form_data):

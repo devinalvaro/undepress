@@ -18,9 +18,6 @@ def index():
 
 def get_form_data(request):
     user_id = current_user.user_id
-    if user_id == app.config['ADMIN_ID']:
-        user_id = int(request.args.get('user_id') or user_id)
-
     if is_expert(user_id):
         return dict(expert_id=user_id)
     else:
