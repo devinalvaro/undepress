@@ -3,7 +3,7 @@ from flask_login import login_user
 
 from . import account
 from .user import User
-from ..db import AccountDb
+from ...db import AccountDb
 
 
 @account.route('/login', methods=['GET', 'POST'])

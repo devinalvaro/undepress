@@ -2,7 +2,7 @@ from bson import json_util
 from flask import Blueprint, current_app as app, request
 from flask_login import current_user, login_required
 
-from ..db import UserdataDb
+from ...db import UserdataDb
 
 userdata = Blueprint('userdata', __name__, url_prefix='/userdata')
 

@@ -2,19 +2,19 @@ from flask import request
 from flask_login import login_required
 
 from . import socmed
-from ..db import SocmedDb
+from ...db import SocmedDb
 
 
-@socmed.route('/add', methods=['POST'])
+@socmed.route('/remove', methods=['POST'])
 @login_required
-def add():
+def remove():
     form_data = get_form_data(request)
     if does_document_exist(form_data):
-        set_socialmedia(form_data)
-    else:
-        insert_socialmedia(form_data)
+        unset_socialmedia(form_data)
 
-    return "SOCMED_ADD_SUCCESS"
+        return "SOCMED_REMOVE_SUCCESS"
+    else:
+        return "SOCMED_REMOVE_UNEXIST"
 
 
 def get_form_data(request):
@@ -29,13 +29,9 @@ def does_document_exist(form_data):
     return SocmedDb.find_one(user_id=form_data['user_id'])
 
 
-def set_socialmedia(form_data):
-    SocmedDb.set(
+def unset_socialmedia(form_data):
+    SocmedDb.unset(
         dict(user_id=form_data['user_id']),
         twitter=form_data['twitter'],
         facebook=form_data['facebook'],
         instagram=form_data['instagram'])
-
-
-def insert_socialmedia(form_data):
-    SocmedDb.insert(**form_data)
