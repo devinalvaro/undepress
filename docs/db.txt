@@ -6,6 +6,7 @@
 - address
 - phone
 - is_expert
++ expert_description
 + experience
 + is_verified
 
@@ -16,7 +17,7 @@
 + instagram
 + ...
 
-[userdata]: Preprocessed
+[userdata]
 - user_id
 - data_id
 - data_type: 'social_media'
@@ -41,10 +42,9 @@
 - data
 - timestamp
 
-[monitorings]: diagnosis detail
+[monitorings]
 - user_id
-- depression status: yes/no
-- symptom_number: 1..9 (multi value)
+- symptom_numbers: [1, 2, ..., 8, 9]
 - timestamp
 
 [chats]
@@ -61,23 +61,10 @@
 - issue description
 - status: approved by doctor, canceled by user, refused by doctor
 
-
-## Data for Detection
-[Training Data]:
-- Training ID
-- Result: Depression or Not
-- Symptom 1: T/F
-- Symptom 2: T/F
-- Symptom 3: T/F
-.
-.
-- Symptom N: T/F
-
-[Senti Word Labels]:
-- label_id: Symptom Number (Indicator Number)
-- label
-- indicator_id
-
-[Indicator]:
-- Indicator_id
-- Indicator description
+[trainingdata]:
+- training_id
+- label: True/False (depressed or not)
+- symptom 1: <int>
+- symptom 2: <int>
+...
+- symptom n: <int>
