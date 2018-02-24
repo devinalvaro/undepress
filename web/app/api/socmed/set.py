@@ -1,5 +1,5 @@
 from flask import request
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 from . import socmed
 from ...lib.db import SocmedDb
@@ -16,7 +16,7 @@ def set():
 
 def get_form_data(request):
     return dict(
-        user_id=int(request.form['user_id']),
+        user_id=current_user.user_id,
         twitter=request.form.get('twitter'),
         facebook=request.form.get('facebook'),
         instagram=request.form.get('instagram'))

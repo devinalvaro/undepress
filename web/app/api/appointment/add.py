@@ -1,5 +1,5 @@
 from flask import request
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 from . import appointment
 from ...lib.db import AppointmentDb
@@ -16,7 +16,7 @@ def add():
 
 def get_form_data(request):
     return dict(
-        patient_id=request.form['patient_id'],
+        patient_id=current_user.user_id,
         expert_id=request.form['expert_id'],
         timestamp=request.form['timestamp'],
         location=request.form['location'],

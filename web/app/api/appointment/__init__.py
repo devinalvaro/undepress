@@ -1,5 +1,5 @@
 from bson import json_util
-from flask import Blueprint, current_app as app, request
+from flask import Blueprint, request
 from flask_login import current_user, login_required
 
 from ...lib.db import AccountDb, AppointmentDb
