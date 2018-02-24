@@ -60,20 +60,3 @@ x    return: "MONITORING_ADD_SUCCESS"
 ~/socmed/set: [POST] set current user's social media usernames
 ~    param: [(twitter), (facebook), (instagram)]
 ~    return: "SOCMED_SET_SUCCESS"
-
---------------------------------
-
-x/trainingdata: [GET] return training data
-
-x/trainingdata/add: [POST] add a training data
-x    param: [label, symptom_1, symptom_2, ..., symptoms_9]
-x    return: "TRAININGDATA_ADD_SUCCESS"
-
---------------------------------
-
-x/userdata: [GET] return current user's data
-x    param: [data_type]
-
-x/userdata/add: [POST] add current user's data
-x    param: [data_type, data, timestamp]
-x    return: "USERDATA_ADD_SUCCESS"
