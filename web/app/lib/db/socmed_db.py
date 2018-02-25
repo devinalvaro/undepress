@@ -7,4 +7,4 @@ class SocmedDb(Db):
     @staticmethod
     def set(query, **update):
         Db._filter_none(update)
-        Db.insert(query, **update)
+        Db.set(query, **update)

@@ -16,11 +16,10 @@ def set():
 
 def get_form_data(request):
     return dict(
-        user_id=current_user.user_id,
         twitter=request.form.get('twitter'),
         facebook=request.form.get('facebook'),
         instagram=request.form.get('instagram'))
 
 
 def set_socialmedia(form_data):
-    SocmedDb.set(**form_data)
+    SocmedDb.set(dict(user_id=current_user.user_id), **form_data)

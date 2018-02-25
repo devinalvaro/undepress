@@ -16,7 +16,6 @@ def set():
 
 def get_form_data(request):
     return dict(
-        user_id=current_user.user_id,
         email=request.form.get('email'),
         password=request.form.get('password'),
         name=request.form.get('name'),
@@ -30,4 +29,4 @@ def get_form_data(request):
 
 
 def set_account(form_data):
-    AccountDb.set(**form_data)
+    AccountDb.set(dict(user_id=current_user.user_id), **form_data)
