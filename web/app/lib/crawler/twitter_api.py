@@ -4,7 +4,7 @@ from twitter import Twitter, OAuth
 from ..db import SocmedDb
 
 
-class TwitterAPI:
+class TwitterCrawler:
     def __init__(self, app):
         self.__ACCESS_TOKEN = app.config['TWITTER_ACCESS_TOKEN']
         self.__ACCESS_SECRET = app.config['TWITTER_ACCESS_SECRET']
@@ -20,4 +20,5 @@ class TwitterAPI:
         return self.fetch_user_timeline(username)
 
     def fetch_user_timeline(self, username):
-        return self.__twitter.statuses.user_timeline(screen_name=username)
+        return self.__twitter.statuses.user_timeline(
+            screen_name=username, count=3200)
