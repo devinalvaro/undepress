@@ -24,7 +24,7 @@ def get_form_data(request):
         name=request.form['name'],
         address=request.form['address'],
         phone=request.form['phone'],
-        is_expert=bool(request.form.get('email')))
+        is_expert=bool(request.form.get('is_expert')))
 
 
 def does_email_exist(form_data):

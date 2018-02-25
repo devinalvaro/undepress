@@ -6,5 +6,5 @@ class SocmedDb(Db):
 
     @staticmethod
     def set(query, **update):
-        Db._filter_none(update)
+        update = Db._filter_none(update)
         Db.set(query, **update)
