@@ -1,17 +1,17 @@
 from flask import request
 from flask_login import current_user, login_required
 
-from . import socmed
-from ...lib.db import SocmedDb
+from . import appointment
+from ...lib.db import AppointmentDb
 
 
-@socmed.route('/set', methods=['POST'])
+@appointment.route('/set', methods=['POST'])
 @login_required
 def set():
     form_data = get_form_data(request)
     set_appointment(form_data)
 
-    return "SOCMED_SET_SUCCESS"
+    return "APPINTMENT_SET_SUCCESS"
 
 
 def get_form_data(request):
@@ -43,4 +43,4 @@ def set_appointment(form_data):
     query = dict(
         patient_id=form_data['patient_id'], expert_id=form_data['expert_id']),
     update = dict(status=form_data['status'])
-    SocmedDb.set(query, **update)
+    AppointmentDb.set(query, **update)
