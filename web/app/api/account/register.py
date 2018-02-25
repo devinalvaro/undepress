@@ -2,6 +2,7 @@ from flask import request
 
 from . import account
 from ...lib.db import AccountDb
+from ...lib.password import hash_password
 
 
 @account.route('/register', methods=['POST'])
@@ -30,5 +31,5 @@ def does_email_exist(form_data):
 
 
 def register_account(form_data):
-    # TODO: salt password
+    form_data['password'] = hash_password(form_data['password'])
     AccountDb.insert(**form_data)

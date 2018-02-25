@@ -2,6 +2,7 @@ from flask import request
 
 from . import account
 from ...lib.db import AccountDb
+from ...lib.password import hash_password
 from ...lib.token import encode_token, set_token
 
 
@@ -18,7 +19,9 @@ def login():
 
 
 def get_form_data(request):
-    return dict(email=request.form['email'], password=request.form['password'])
+    email = request.form['email']
+    password = hash_password(request.form['password'])
+    return dict(email=email, password=password)
 
 
 def get_user_id(form_data):
