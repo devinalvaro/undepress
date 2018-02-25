@@ -6,8 +6,6 @@ from ...lib.db import MonitoringDb
 
 monitoring = Blueprint('monitoring', __name__, url_prefix='/monitoring')
 
-from .add import add
-
 
 @monitoring.route('/', methods=['GET'])
 @login_required
