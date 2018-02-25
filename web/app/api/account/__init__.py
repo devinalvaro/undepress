@@ -9,6 +9,7 @@ account = Blueprint('account', __name__, url_prefix='/account')
 from .login import login
 from .logout import logout
 from .register import register
+from .set import set
 
 
 @account.route('/', methods=['GET'])

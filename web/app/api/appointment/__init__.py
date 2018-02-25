@@ -7,6 +7,7 @@ from ...lib.db import AccountDb, AppointmentDb
 appointment = Blueprint('appointment', __name__, url_prefix='/appointment')
 
 from .add import add
+from .set import set
 
 
 @appointment.route('/', methods=['GET'])
