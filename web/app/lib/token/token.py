@@ -1,15 +1,17 @@
+from flask import current_app as app
+from jwt import decode, encode
+
 from ...lib.db import TokenDb
 
 
-# TODO: generate better token
-def generate_token(request, user_id):
-    return "TOKEN:" + str(user_id)
+def encode_token(user_id):
+    return encode(
+        dict(user_id=user_id), app.config['SECRET_KEY'],
+        algorithm='HS256').decode('utf-8')
 
 
-# TODO: parse more informations
-def parse_token(token):
-    dump, user_id = token.split(':')
-    return dict(user_id=int(user_id))
+def decode_token(token):
+    return decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
 
 
 def is_token_valid(user_id, token):
