@@ -10,6 +10,7 @@ from ...lib.token import encode_token, set_token
 def login():
     form_data = get_form_data(request)
     user_id = get_user_id(form_data)
+
     if user_id is not None:
         token = encode_token(user_id)
         set_token(user_id, token)

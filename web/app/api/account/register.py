@@ -8,6 +8,7 @@ from ...lib.password import hash_password
 @account.route('/register', methods=['POST'])
 def register():
     form_data = get_form_data(request)
+
     if does_email_exist(form_data):
         return "ACCOUNT_REGISTER_EXIST"
     else:

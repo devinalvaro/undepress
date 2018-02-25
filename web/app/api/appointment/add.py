@@ -17,7 +17,7 @@ def add():
 def get_form_data(request):
     return dict(
         patient_id=current_user.user_id,
-        expert_id=request.form['expert_id'],
+        expert_id=int(request.form['expert_id']),
         timestamp=request.form['timestamp'],
         location=request.form['location'],
         issue_description=request.form['issue_description'],

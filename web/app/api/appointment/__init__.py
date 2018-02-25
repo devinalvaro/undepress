@@ -13,11 +13,13 @@ from .add import add
 @login_required
 def index():
     form_data = get_form_data(request)
-    return json_util.dumps(get_appointment_data(form_data))
+    appointment_data = get_appointment_data(form_data)
+    return json_util.dumps(appointment_data)
 
 
 def get_form_data(request):
     user_id = current_user.user_id
+
     if is_expert(user_id):
         return dict(expert_id=user_id)
     else:

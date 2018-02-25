@@ -15,7 +15,8 @@ from .register import register
 @login_required
 def index():
     form_data = get_form_data(request)
-    return json_util.dumps(get_account_data(form_data))
+    account_data = get_account_data(form_data)
+    return json_util.dumps(account_data)
 
 
 def get_form_data(request):
