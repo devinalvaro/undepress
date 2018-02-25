@@ -24,11 +24,11 @@ class Db:
 
     @staticmethod
     def push(query, **update):
-        Db._collection.update(query, {'$push': update})
+        Db._collection.update(query, {'$push': update}, upsert=True)
 
     @staticmethod
     def set(query, **update):
-        Db._collection.update(query, {'$set': update})
+        Db._collection.update(query, {'$set': update}, upsert=True)
 
     @staticmethod
     def unset(query, **update):

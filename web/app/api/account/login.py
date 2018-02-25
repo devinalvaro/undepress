@@ -1,22 +1,19 @@
-from flask import render_template, request
-from flask_login import login_user
+from bson import json_util
+from flask import request
 
 from . import account
 from ...lib.db import AccountDb
-from ...lib.user import User
+from ...lib.token import generate_token, set_token
 
 
-@account.route('/login', methods=['GET', 'POST'])
+@account.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-
     form_data = get_form_data(request)
     user_id = get_user_id(form_data)
     if user_id is not None:
-        login_user(User(user_id))
-
-        return "ACCOUNT_LOGIN_SUCCESS"
+        token = generate_token(request, user_id)
+        set_token(user_id, token)
+        return json_util.dumps(dict(token=token))
     else:
         return "ACCOUNT_LOGIN_INVALID"
 

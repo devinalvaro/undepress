@@ -1,14 +1,11 @@
-from flask import render_template, request
+from flask import request
 
 from . import account
 from ...lib.db import AccountDb
 
 
-@account.route('/register', methods=['GET', 'POST'])
+@account.route('/register', methods=['POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('register.html')
-
     form_data = get_form_data(request)
     if does_email_exist(form_data):
         return "ACCOUNT_REGISTER_EXIST"
