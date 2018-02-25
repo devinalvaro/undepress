@@ -2,7 +2,7 @@
 
 /account/login: [POST]
     param: [email, password]
-    return: "ACCOUNT_LOGIN_SUCCESS" / "ACCOUNT_LOGIN_INVALID"
+    return: token / "ACCOUNT_LOGIN_INVALID"
 
 /account/register: [POST]
     param: [user_id, email, password, name, address, phone, is_expert]
@@ -48,10 +48,6 @@
 --------------------------------
 
 /socmed: [GET] return current user's social media usernames
-
-/socmed/add: [POST] add current user's social media usernames
-    param: [(twitter), (facebook), (instagram)]
-    return: "SOCMED_ADD_SUCCESS"
 
 /socmed/set: [POST] set current user's social media usernames
     param: [(twitter), (facebook), (instagram)]
