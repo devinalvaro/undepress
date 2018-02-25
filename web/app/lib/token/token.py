@@ -1,10 +1,12 @@
 from ...lib.db import TokenDb
 
 
+# TODO: generate better token
 def generate_token(request, user_id):
     return "TOKEN:" + str(user_id)
 
 
+# TODO: parse more informations
 def parse_token(token):
     dump, user_id = token.split(':')
     return dict(user_id=int(user_id))
