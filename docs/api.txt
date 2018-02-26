@@ -34,7 +34,7 @@
     param: [sender_id]
 
 /chat/send: [POST] send chat between sender and receiver
-    param: [receiver_id, message]
+    param: [receiver_id, message, timestamp]
     return: "CHAT_SEND_SUCCESS"
 
 --------------------------------

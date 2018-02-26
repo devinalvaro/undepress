@@ -21,8 +21,8 @@ def get_form_data(request):
         name=request.form.get('name'),
         address=request.form.get('address'),
         phone=request.form.get('phone'),
-        is_expert=request.form.get('is_expert'),
-        is_expert_verified=request.form.get('is_expert_verified'),
+        is_expert=bool(request.form.get('is_expert')),
+        is_expert_verified=bool(request.form.get('is_expert_verified')),
         expert_description=request.form.get('expert_description'),
         expert_experience=request.form.get('expert_experience'),
         expert_location=request.form.get('expert_location'))

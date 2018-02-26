@@ -11,7 +11,7 @@ def set():
     form_data = get_form_data(request)
     set_appointment(form_data)
 
-    return "APPINTMENT_SET_SUCCESS"
+    return "APPOINTMENT_SET_SUCCESS"
 
 
 def get_form_data(request):
@@ -41,6 +41,6 @@ def ensure_ids_are_integers(form_data):
 
 def set_appointment(form_data):
     query = dict(
-        patient_id=form_data['patient_id'], expert_id=form_data['expert_id']),
+        patient_id=form_data['patient_id'], expert_id=form_data['expert_id'])
     update = dict(status=form_data['status'])
     AppointmentDb.set(query, **update)
