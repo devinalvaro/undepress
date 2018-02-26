@@ -2,9 +2,9 @@ from .db import Db
 
 
 class SocmedDb(Db):
-    Db._collection = Db._db.socialmedias
+    collection = Db._db.socialmedias
 
-    @staticmethod
-    def set(query, **update):
-        update = Db._filter_none(update)
-        Db.set(query, **update)
+    @classmethod
+    def set(cls, query, **update):
+        update = cls._filter_none(update)
+        super(SocmedDb, cls).set(query, **update)

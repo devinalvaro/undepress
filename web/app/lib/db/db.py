@@ -4,40 +4,39 @@ from pymongo import MongoClient
 class Db:
     __mongo_client = MongoClient('db', 27017)
     _db = __mongo_client.undepress
-    _collection = None
 
-    @staticmethod
-    def count(cursor):
+    @classmethod
+    def count(cls, cursor):
         return cursor.count()
 
-    @staticmethod
-    def find(**query):
-        return Db._collection.find(query)
+    @classmethod
+    def find(cls, **query):
+        return cls.collection.find(query)
 
-    @staticmethod
-    def find_one(**query):
-        return Db._collection.find_one(query)
+    @classmethod
+    def find_one(cls, **query):
+        return cls.collection.find_one(query)
 
-    @staticmethod
-    def insert(**query):
-        Db._collection.insert(query)
+    @classmethod
+    def insert(cls, **query):
+        cls.collection.insert(query)
 
-    @staticmethod
-    def push(query, **update):
-        Db._collection.update(query, {'$push': update}, upsert=True)
+    @classmethod
+    def push(cls, query, **update):
+        cls.collection.update(query, {'$push': update}, upsert=True)
 
-    @staticmethod
-    def set(query, **update):
-        Db._collection.update(query, {'$set': update}, upsert=True)
+    @classmethod
+    def set(cls, query, **update):
+        cls.collection.update(query, {'$set': update}, upsert=True)
 
-    @staticmethod
-    def unset(query, **update):
-        Db._collection.update(query, {'$unset': update})
+    @classmethod
+    def unset(cls, query, **update):
+        cls.collection.update(query, {'$unset': update})
 
-    @staticmethod
-    def _put_id(query, key):
-        query[key] = Db.count(Db.find()) + 1
+    @classmethod
+    def _put_id(cls, query, key):
+        query[key] = cls.count(cls.find()) + 1
 
-    @staticmethod
-    def _filter_none(query):
+    @classmethod
+    def _filter_none(cls, query):
         return dict((k, v) for k, v in query.items() if v is not None)

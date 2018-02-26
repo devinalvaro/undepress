@@ -2,4 +2,4 @@ from .db import Db
 
 
 class AppointmentDb(Db):
-    Db._collection = Db._db.appointments
+    collection = Db._db.appointments

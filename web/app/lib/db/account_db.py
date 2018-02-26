@@ -2,14 +2,14 @@ from .db import Db
 
 
 class AccountDb(Db):
-    Db._collection = Db._db.accounts
+    collection = Db._db.accounts
 
-    @staticmethod
-    def insert(**query):
-        Db._put_id(query, 'user_id')
-        Db.insert(**query)
+    @classmethod
+    def insert(cls, **query):
+        cls._put_id(query, 'user_id')
+        super(AccountDb, cls).insert(**query)
 
-    @staticmethod
-    def set(query, **update):
-        update = Db._filter_none(update)
-        Db.set(query, **update)
+    @classmethod
+    def set(cls, query, **update):
+        update = cls._filter_none(update)
+        super(AccountDb, cls).set(query, **update)
