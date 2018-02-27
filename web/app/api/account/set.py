@@ -25,7 +25,8 @@ def get_form_data(request):
         is_expert_verified=bool(request.form.get('is_expert_verified')),
         expert_description=request.form.get('expert_description'),
         expert_experience=request.form.get('expert_experience'),
-        expert_location=request.form.get('expert_location'))
+        expert_location=request.form.get('expert_location'),
+        expert_picture=request.form.get('expert_picture'))
 
 
 def set_account(form_data):

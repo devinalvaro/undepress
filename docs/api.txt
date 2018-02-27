@@ -9,8 +9,8 @@
     return: "ACCOUNT_REGISTER_SUCCESS" / "ACCOUNT_REGISTER_EXIST"
 
 /account/set: [POST] set current user's personal informations
-    param: [(email), (password), (name), (address), (phone),
-           (is_expert), (is_expert_verified), (expert_description), (expert_experience), (expert_location)]
+    param: [(email), (password), (name), (address), (phone), (is_expert), (is_expert_verified),
+            (expert_description), (expert_experience), (expert_location), (expert_picture)]
     return: "ACCOUNT_SET_SUCCESS"
 
 /account/logout: [GET]
