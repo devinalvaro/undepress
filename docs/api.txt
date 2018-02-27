@@ -43,6 +43,10 @@
 
 --------------------------------
 
+/expert: [GET] return list of experts
+
+--------------------------------
+
 /monitoring: [GET] return current user's monitoring
 
 --------------------------------
