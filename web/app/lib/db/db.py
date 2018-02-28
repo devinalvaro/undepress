@@ -22,10 +22,6 @@ class Db:
         cls.collection.insert(query)
 
     @classmethod
-    def push(cls, query, **update):
-        cls.collection.update(query, {'$push': update}, upsert=True)
-
-    @classmethod
     def set(cls, query, **update):
         cls.collection.update(query, {'$set': update}, upsert=True)
 

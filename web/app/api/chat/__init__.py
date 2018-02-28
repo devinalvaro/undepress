@@ -18,9 +18,22 @@ def index():
 
 def get_form_data(request):
     return dict(
-        sender_id=int(request.args['sender_id']),
-        receiver_id=current_user.user_id)
+        our_id=current_user.user_id, their_id=int(request.args['their_id']))
 
 
 def get_chat_data(form_data):
-    return ChatDb.find(**form_data)
+    query = {
+        '$or': [
+            dict(
+                sender_id=form_data['our_id'],
+                receiver_id=form_data['their_id']),
+            dict(
+                sender_id=form_data['their_id'],
+                receiver_id=form_data['our_id'])
+        ]
+    }
+    return sort_chats_by_timestamp(ChatDb.find(**query))
+
+
+def sort_chats_by_timestamp(chats):
+    return sorted(chats, key=lambda chat: chat['timestamp'])

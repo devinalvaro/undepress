@@ -30,8 +30,8 @@
 
 --------------------------------
 
-/chat: [GET] return current user's chats with sender_id
-    param: [sender_id]
+/chat: [GET] return current user's chats with their_id
+    param: [their_id]
 
 /chat/send: [POST] send chat between sender and receiver
     param: [receiver_id, message, timestamp]
