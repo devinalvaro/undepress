@@ -9,7 +9,7 @@ socmed = Blueprint('socmed', __name__, url_prefix='/socmed')
 from .set import set
 
 
-@socmed.route('/', methods=['GET'])
+@socmed.route('', methods=['GET'])
 @login_required
 def index():
     form_data = get_form_data(request)

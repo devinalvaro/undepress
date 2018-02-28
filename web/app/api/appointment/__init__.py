@@ -10,7 +10,7 @@ from .add import add
 from .set import set
 
 
-@appointment.route('/', methods=['GET'])
+@appointment.route('', methods=['GET'])
 @login_required
 def index():
     form_data = get_form_data(request)

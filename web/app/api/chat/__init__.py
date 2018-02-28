@@ -9,7 +9,7 @@ chat = Blueprint('chat', __name__, url_prefix='/chat')
 from .send import send
 
 
-@chat.route('/', methods=['GET'])
+@chat.route('', methods=['GET'])
 @login_required
 def index():
     form_data = get_form_data(request)

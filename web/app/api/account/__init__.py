@@ -12,7 +12,7 @@ from .register import register
 from .set import set
 
 
-@account.route('/', methods=['GET'])
+@account.route('', methods=['GET'])
 @login_required
 def index():
     form_data = get_form_data(request)

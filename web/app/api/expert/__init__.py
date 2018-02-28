@@ -7,7 +7,7 @@ from ...lib.db import AccountDb
 expert = Blueprint('expert', __name__, url_prefix='/expert')
 
 
-@expert.route('/', methods=['GET'])
+@expert.route('', methods=['GET'])
 @login_required
 def index():
     expert_data = get_expert_data()

@@ -7,7 +7,7 @@ from ...lib.db import MonitoringDb
 monitoring = Blueprint('monitoring', __name__, url_prefix='/monitoring')
 
 
-@monitoring.route('/', methods=['GET'])
+@monitoring.route('', methods=['GET'])
 @login_required
 def index():
     form_data = get_form_data(request)
