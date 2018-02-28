@@ -6,6 +6,7 @@ from .login_manager import login_manager
 from .api import account_blueprint
 from .api import appointment_blueprint
 from .api import chat_blueprint
+from .api import detection_blueprint
 from .api import expert_blueprint
 from .api import monitoring_blueprint
 from .api import socmed_blueprint
@@ -35,6 +36,7 @@ def register_blueprints(app):
     app.register_blueprint(account_blueprint)
     app.register_blueprint(appointment_blueprint)
     app.register_blueprint(chat_blueprint)
+    app.register_blueprint(detection_blueprint)
     app.register_blueprint(expert_blueprint)
     app.register_blueprint(monitoring_blueprint)
     app.register_blueprint(socmed_blueprint)

@@ -2,7 +2,11 @@ bcrypt==3.1.*
 bson==0.5.*
 flask-login==0.4.*
 flask==0.12.*
+imbalanced-learn==0.3.*
+numpy==1.14.*
 pyjwt==1.5.*
 pymongo==3.6.*
 pyyaml==3.12
+scikit-learn==0.19.*
+scipy==1.0.*
 twitter==1.18.*
