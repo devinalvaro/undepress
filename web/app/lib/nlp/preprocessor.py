@@ -9,11 +9,11 @@ import string
 import re
 
 
-def preprocess(post):
+def preprocess(post, lexicon_words):
     post = convert_to_lower(post)
     post = remove_url(post)
     post = remove_mention(post)
-    post = convert_to_unigram(post)
+    post = convert_to_unigram(post, lexicon_words)
     post = delete_number(post)
     post = tokenize(post)
     post = delete_stop_words(post)
@@ -22,6 +22,31 @@ def preprocess(post):
     post = lemmatize(post)
     post = ' '.join(post)
     return post
+
+
+def get_lexicon_words():
+    with open("lexicons/depression.json") as f:
+        lexicon = json.load(f)
+
+    lexicon_words = [
+        lexicon_word.replace("_", " ") for lexicon_word in list(
+            itertools.chain.from_iterable(
+                [lexicon[signal] for signal in lexicon.keys()]))
+    ]
+
+    with open("lexicons/medicine.json") as m:
+        medicine_list = json.load(m)
+
+    medicine_words = [
+        medicine_word.replace("_", " ") for medicine_word in list(
+            itertools.chain.from_iterable(
+                [medicine_list[key] for key in medicine_list.keys()]))
+    ]
+
+    for medicine in medicine_words:
+        lexicon_words.append(medicine)
+
+    return lexicon_words
 
 
 def convert_to_lower(post):
@@ -41,31 +66,10 @@ def remove_mention(post):
     return post
 
 
-def convert_to_unigram(post):
+def convert_to_unigram(post, lexicon_words):
     post = post.replace('-', '_')
 
-    with open("depression_lexicon.json") as f:
-        lexicon = json.load(f)
-
-    all_lexicon_words = [
-        lexicon_word.replace("_", " ") for lexicon_word in list(
-            itertools.chain.from_iterable(
-                [lexicon[signal] for signal in lexicon.keys()]))
-    ]
-
-    with open("medicine.json") as m:
-        medicine_list = json.load(m)
-
-    all_medicine_word = [
-        medicine_word.replace("_", " ") for medicine_word in list(
-            itertools.chain.from_iterable(
-                [medicine_list[key] for key in medicine_list.keys()]))
-    ]
-
-    for medicine in all_medicine_word:
-        all_lexicon_words.append(medicine)
-
-    for word in all_lexicon_words:
+    for word in lexicon_words:
         if word in post and " " in word:
             post = post.replace(word, word.replace(" ", "_"))
 

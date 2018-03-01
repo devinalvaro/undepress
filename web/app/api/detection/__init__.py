@@ -4,7 +4,7 @@ from flask_login import login_required
 from sklearn.externals import joblib
 
 from ...lib.crawler import TwitterCrawler
-from ...lib.nlp import preprocess
+from ...lib.nlp import get_lexicon_words, preprocess
 
 detection = Blueprint('detection', __name__, url_prefix='/detection')
 
@@ -24,9 +24,11 @@ def detect_depression(app):
     twitter_crawler = TwitterCrawler(app)
     tweets = twitter_crawler.fetch_current_user_timeline()
 
+    lexicon_words = get_lexicon_words()
+
     if tweets is not None:
         predictions = [
-            detect_depression_symptoms(preprocess(tweet['text']))
+            detect_depression_symptoms(preprocess(tweet['text'], lexicon_words))
             for tweet in tweets
         ]
         predictions_sum = sum_predictions(predictions)
