@@ -19,13 +19,14 @@ def detect_depression(app):
     twitter_crawler = TwitterCrawler(app)
     tweets = twitter_crawler.fetch_current_user_timeline()
 
+    if tweets is None:
+        return "DETECTION_USERNAMES_NOT_FOUND"
+
     predictions = [
         detect_depression_symptoms(tweet['text']) for tweet in tweets
     ]
-
     predictions_sum = sum_predictions(predictions)
     predictions_sum_total = sum_predictions(predictions, include_all=True)
-
     return classify_prediction(predictions_sum, predictions_sum_total)
 
 
@@ -39,13 +40,11 @@ def detect_depression_symptoms(text):
 
 def sum_predictions(predictions, include_all=False):
     predictions_sum = [0 for _ in range(9)]
-
     for prediction in predictions:
         if include_all or int(prediction[0]):
             predictions_sum = [
                 a + int(b) for a, b in zip(predictions_sum, prediction)
             ]
-
     return predictions_sum
 
 

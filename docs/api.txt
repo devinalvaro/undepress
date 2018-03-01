@@ -2,11 +2,13 @@
 
 /account/login: [POST]
     param: [email, password]
-    return: token / "ACCOUNT_LOGIN_INVALID"
+    return: token
+    error: "ACCOUNT_LOGIN_INVALID"
 
 /account/register: [POST]
     param: [user_id, email, password, name, address, phone, is_expert]
-    return: "ACCOUNT_REGISTER_SUCCESS" / "ACCOUNT_REGISTER_EXIST"
+    return: "ACCOUNT_REGISTER_SUCCESS"
+    error: "ACCOUNT_REGISTER_EXIST"
 
 /account/set: [POST] set current user's personal informations
     param: [(email), (password), (name), (address), (phone), (is_expert), (is_expert_verified),
@@ -39,7 +41,8 @@
 
 --------------------------------
 
-+/detection: [POST] return current user's depression detection
+/detection: [POST] return current user's depression detection
+    error: "DETECTION_USERNAMES_NOT_FOUND"
 
 --------------------------------
 

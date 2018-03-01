@@ -16,8 +16,10 @@ class TwitterCrawler:
 
     def fetch_current_user_timeline(self):
         user_id = current_user.user_id
-        username = SocmedDb.find_one(user_id=user_id)['twitter']
-        return self.fetch_user_timeline(username)
+        usernames = SocmedDb.find_one(user_id=user_id)
+
+        if usernames is not None and 'twitter' in usernames:
+            return self.fetch_user_timeline(usernames['twitter'])
 
     def fetch_user_timeline(self, username):
         return self.__twitter.statuses.user_timeline(
