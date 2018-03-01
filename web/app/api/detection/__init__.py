@@ -1,11 +1,13 @@
 from bson import json_util
+from datetime import datetime, timedelta
+from dateutil import parser
 from flask import Blueprint, current_app as app
 from flask_login import login_required
+from pytz import UTC
 from sklearn.externals import joblib
 
 from ...lib.crawler import TwitterCrawler
 from ...lib.nlp import get_lexicon_words, preprocess
-import pytz
 
 detection = Blueprint('detection', __name__, url_prefix='/detection')
 
@@ -27,22 +29,24 @@ def detect_depression(app):
 
     lexicon_words = get_lexicon_words()
 
+    end_window = UTC.localize(datetime.now())
+    start_window = UTC.localize(end_window - timedelta(days=14))
 
-    utc = pytz.UTC
-    
-    end_window = utc.localize(datetime.now())
-    start_window = utc.localize(end_window - timedelta(days=14))
-    
-    if tweets is not None:
-        predicitons = []
-        for tweet in tweets:
-            dt = utc.localize(parser.parse(tweet['created_at']))
-            if (dt >= start_window and dt <= end_window):
-                predictions.append(detect_depression_symptoms(preprocess(tweet['text'], lexicon_words)))
-                
-        predictions_sum = sum_predictions(predictions)
-        predictions_sum_total = sum_predictions(predictions, include_all=True)
-        return classify_prediction(predictions_sum, predictions_sum_total)
+    if tweets is None:
+        return None
+
+    predictions = []
+    for tweet in tweets:
+        tweet_time = parser.parse(tweet['created_at'])
+        if (tweet_time >= start_window and tweet_time <= end_window):
+            predictions.append(
+                detect_depression_symptoms(
+                    preprocess(tweet['text'], lexicon_words)))
+
+    predictions_sum = sum_predictions(predictions)
+    predictions_sum_total = sum_predictions(predictions, include_all=True)
+
+    return classify_prediction(predictions_sum, predictions_sum_total)
 
 
 def detect_depression_symptoms(text):
