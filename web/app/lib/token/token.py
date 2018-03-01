@@ -15,7 +15,7 @@ def decode_token(token):
 
 
 def is_token_valid(user_id, token):
-    return TokenDb.find_one(user_id=user_id, token=token)
+    return TokenDb.find_one(user_id=user_id, token=token) is not None
 
 
 def set_token(user_id, token):

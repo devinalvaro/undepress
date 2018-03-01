@@ -28,7 +28,7 @@ def get_form_data(request):
 
 
 def does_email_exist(form_data):
-    return AccountDb.find_one(email=form_data['email'])
+    return AccountDb.find_one(email=form_data['email']) is not None
 
 
 def register_account(form_data):

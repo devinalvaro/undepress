@@ -10,7 +10,7 @@ login_manager = LoginManager()
 def load_user(request):
     token = request.headers.get('Authorization')
 
-    if token:
+    if token is not None:
         decoded_token = decode_token(token)
         user_id = decoded_token['user_id']
 

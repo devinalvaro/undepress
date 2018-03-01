@@ -27,4 +27,5 @@ def get_form_data(request):
 
 def get_user_id(form_data):
     result = AccountDb.find_one(**form_data)
-    return result['user_id'] if result else None
+    return result['user_id'] if (result is
+                                 not None) and ('user_id' in result) else None
