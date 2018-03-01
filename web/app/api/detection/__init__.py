@@ -19,7 +19,7 @@ def get_depression_detection(app):
     tweets = twitter_crawler.fetch_current_user_timeline()
 
     predictions = [
-        detect_depression_symptoms([tweet['text']]) for tweet in tweets
+        detect_depression_symptoms(tweet['text']) for tweet in tweets
     ]
     return predictions
 
@@ -28,5 +28,5 @@ def detect_depression_symptoms(text):
     prediction = []
     for i in range(1, 10):
         classifier = joblib.load('data/classifier_' + str(i) + '.pkl')
-        prediction.extend(classifier.predict(text))
+        prediction.extend(classifier.predict([text]))
     return prediction

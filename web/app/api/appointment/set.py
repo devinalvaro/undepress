@@ -21,7 +21,6 @@ def get_form_data(request):
         status=request.form['status'])
 
     fill_patient_id_or_expert_id(form_data)
-
     ensure_ids_are_integers(form_data)
 
     return form_data

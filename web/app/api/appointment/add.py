@@ -9,7 +9,7 @@ from ...lib.db import AppointmentDb
 @login_required
 def add():
     form_data = get_form_data(request)
-    insert_appointment(form_data)
+    add_appointment(form_data)
 
     return "APPOINTMENT_ADD_SUCCESS"
 
@@ -24,5 +24,5 @@ def get_form_data(request):
         status=request.form['status'])
 
 
-def insert_appointment(form_data):
+def add_appointment(form_data):
     AppointmentDb.insert(**form_data)

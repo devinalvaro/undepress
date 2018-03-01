@@ -11,7 +11,8 @@ monitoring = Blueprint('monitoring', __name__, url_prefix='/monitoring')
 @login_required
 def index():
     form_data = get_form_data(request)
-    return json_util.dumps(get_monitoring_data(form_data))
+    monitoring_data = get_monitoring_data(form_data)
+    return json_util.dumps(monitoring_data)
 
 
 def get_form_data(request):

@@ -13,7 +13,8 @@ from .set import set
 @login_required
 def index():
     form_data = get_form_data(request)
-    return json_util.dumps(get_socmed_data(form_data))
+    socmed_data = get_socmed_data(form_data)
+    return json_util.dumps(socmed_data)
 
 
 def get_form_data(request):

@@ -6,12 +6,12 @@ class AccountDb(Db):
 
     @classmethod
     def find(cls, **query):
-        exclude = dict(password=0)
+        exclude = dict(password=1)
         return cls.collection.find(query, exclude)
 
     @classmethod
     def find_one(cls, **query):
-        exclude = dict(password=0)
+        exclude = dict(password=1)
         return cls.collection.find_one(query, exclude)
 
     @classmethod
