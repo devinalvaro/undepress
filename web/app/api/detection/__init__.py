@@ -12,22 +12,24 @@ detection = Blueprint('detection', __name__, url_prefix='/detection')
 @login_required
 def index():
     depression_detection = detect_depression(app)
-    return json_util.dumps(depression_detection)
+
+    if depression_detection is not None:
+        return json_util.dumps(depression_detection)
+    else:
+        return "DETECTION_USERNAME_NOT_FOUND"
 
 
 def detect_depression(app):
     twitter_crawler = TwitterCrawler(app)
     tweets = twitter_crawler.fetch_current_user_timeline()
 
-    if tweets is None:
-        return "DETECTION_USERNAMES_NOT_FOUND"
-
-    predictions = [
-        detect_depression_symptoms(tweet['text']) for tweet in tweets
-    ]
-    predictions_sum = sum_predictions(predictions)
-    predictions_sum_total = sum_predictions(predictions, include_all=True)
-    return classify_prediction(predictions_sum, predictions_sum_total)
+    if tweets is not None:
+        predictions = [
+            detect_depression_symptoms(tweet['text']) for tweet in tweets
+        ]
+        predictions_sum = sum_predictions(predictions)
+        predictions_sum_total = sum_predictions(predictions, include_all=True)
+        return classify_prediction(predictions_sum, predictions_sum_total)
 
 
 def detect_depression_symptoms(text):

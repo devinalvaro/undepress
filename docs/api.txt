@@ -42,7 +42,7 @@
 --------------------------------
 
 /detection: [POST] return current user's depression detection
-    error: "DETECTION_USERNAMES_NOT_FOUND"
+    error: "DETECTION_USERNAME_NOT_FOUND"
 
 --------------------------------
 
