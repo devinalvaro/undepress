@@ -7,6 +7,7 @@ nltk==3.2.*
 numpy==1.14.*
 pyjwt==1.5.*
 pymongo==3.6.*
+python-dateutil==2.6.*
 pyyaml==3.12
 scikit-learn==0.19.*
 scipy==1.0.*

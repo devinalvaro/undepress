@@ -23,4 +23,4 @@ class TwitterCrawler:
 
     def fetch_user_timeline(self, username):
         return self.__twitter.statuses.user_timeline(
-            screen_name=username, count=100)
+            screen_name=username, count=32)

@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from dateutil import parser
 from flask import Blueprint, current_app as app
 from flask_login import login_required
-from pytz import UTC
+from pytz import timezone
 from sklearn.externals import joblib
 
 from ...lib.crawler import TwitterCrawler
@@ -29,8 +29,10 @@ def detect_depression(app):
 
     lexicon_words = get_lexicon_words()
 
-    end_window = UTC.localize(datetime.now())
-    start_window = UTC.localize(end_window - timedelta(days=14))
+    utc = timezone('UTC')
+    now = datetime.now()
+    start_window = utc.localize(now - timedelta(days=14))
+    end_window = utc.localize(now)
 
     if tweets is None:
         return None
@@ -38,7 +40,7 @@ def detect_depression(app):
     predictions = []
     for tweet in tweets:
         tweet_time = parser.parse(tweet['created_at'])
-        if (tweet_time >= start_window and tweet_time <= end_window):
+        if tweet_time >= start_window and tweet_time <= end_window:
             predictions.append(
                 detect_depression_symptoms(
                     preprocess(tweet['text'], lexicon_words)))
@@ -69,6 +71,6 @@ def sum_predictions(predictions, include_all=False):
 
 def classify_prediction(predictions_sum, predictions_sum_total):
     return [
-        1 if a / b >= 0.5 else 0
+        0 if (b == 0) or (a / b < 0.5) else 1
         for a, b in zip(predictions_sum, predictions_sum_total)
     ]
