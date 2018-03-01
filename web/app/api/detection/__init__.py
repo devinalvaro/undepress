@@ -22,7 +22,11 @@ def detect_depression(app):
     predictions = [
         detect_depression_symptoms(tweet['text']) for tweet in tweets
     ]
-    return sum_predictions(predictions)
+
+    predictions_sum = sum_predictions(predictions)
+    predictions_sum_total = sum_predictions(predictions, include_all=True)
+
+    return classify_prediction(predictions_sum, predictions_sum_total)
 
 
 def detect_depression_symptoms(text):
@@ -33,11 +37,20 @@ def detect_depression_symptoms(text):
     return prediction
 
 
-def sum_predictions(predictions):
+def sum_predictions(predictions, include_all=False):
     predictions_sum = [0 for _ in range(9)]
+
     for prediction in predictions:
-        if int(prediction[0]):
+        if include_all or int(prediction[0]):
             predictions_sum = [
                 a + int(b) for a, b in zip(predictions_sum, prediction)
             ]
+
     return predictions_sum
+
+
+def classify_prediction(predictions_sum, predictions_sum_total):
+    return [
+        1 if a / b >= 0.5 else 0
+        for a, b in zip(predictions_sum, predictions_sum_total)
+    ]
