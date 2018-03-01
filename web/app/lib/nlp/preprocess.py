@@ -21,7 +21,7 @@ def preprocess(post, lexicon_words):
     post = delete_stop_words(post)
     post = remove_punctuation(post)
     post = stem(post)
-    post = lemmatize(post)
+    # post = lemmatize(post)
     post = ' '.join(post)
     return post
 
