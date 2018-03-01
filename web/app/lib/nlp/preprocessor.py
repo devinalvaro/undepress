@@ -24,9 +24,9 @@ def preprocess(post):
     return post
 
 
-def remove_punctuation(list_of_words):
-    punctuation = list("_")
-    return [i for i in list_of_words if i not in punctuation]
+def convert_to_lower(post):
+    post = post.lower()
+    return post
 
 
 def remove_url(post):
@@ -38,8 +38,6 @@ def remove_mention(post):
     mentions = re.findall(r"@\w+", post)
     for mention in mentions:
         post = post.replace(mention, "")
-    # print(post)
-    # print("HEHE")
     return post
 
 
@@ -74,11 +72,6 @@ def convert_to_unigram(post):
     return post
 
 
-def convert_to_lower(post):
-    post = post.lower()
-    return post
-
-
 def delete_number(post):
     numbers = '0123456789'
     for number in numbers:
@@ -104,6 +97,11 @@ def delete_stop_words(list_of_words):
     stop = stopwords.words('english') + list(punctuation)
     result = [i for i in list_of_words if i not in stop]
     return result
+
+
+def remove_punctuation(list_of_words):
+    punctuation = list("_")
+    return [i for i in list_of_words if i not in punctuation]
 
 
 def stem(list_of_words):
