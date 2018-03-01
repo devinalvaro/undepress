@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer

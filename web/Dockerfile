@@ -4,3 +4,4 @@ COPY . /app/web
 WORKDIR /app/web
 
 RUN pip install -r requirements.txt
+RUN python -m nltk.downloader stopwords wordnet

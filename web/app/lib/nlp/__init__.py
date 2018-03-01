@@ -1,1 +1,1 @@
-from .preprocessor import get_lexicon_words, preprocessor
+from .preprocess import get_lexicon_words, preprocess
