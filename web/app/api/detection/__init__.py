@@ -5,6 +5,7 @@ from sklearn.externals import joblib
 
 from ...lib.crawler import TwitterCrawler
 from ...lib.nlp import get_lexicon_words, preprocess
+import pytz
 
 detection = Blueprint('detection', __name__, url_prefix='/detection')
 
@@ -26,11 +27,19 @@ def detect_depression(app):
 
     lexicon_words = get_lexicon_words()
 
+
+    utc = pytz.UTC
+    
+    end_window = utc.localize(datetime.now())
+    start_window = utc.localize(end_window - timedelta(days=14))
+    
     if tweets is not None:
-        predictions = [
-            detect_depression_symptoms(preprocess(tweet['text'], lexicon_words))
-            for tweet in tweets
-        ]
+        predicitons = []
+        for tweet in tweets:
+            dt = utc.localize(parser.parse(tweet['created_at']))
+            if (dt >= start_window and dt <= end_window):
+                predictions.append(detect_depression_symptoms(preprocess(tweet['text'], lexicon_words)))
+                
         predictions_sum = sum_predictions(predictions)
         predictions_sum_total = sum_predictions(predictions, include_all=True)
         return classify_prediction(predictions_sum, predictions_sum_total)
