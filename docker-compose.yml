@@ -1,20 +1,23 @@
 version: '2'
 
 services:
-  web:
-    build: ./web
-    command: python -u run.py
+  app:
+    build: .
+    command: python -u undepress/run.py
     restart: always
     ports:
       - '80:5000'
     env_file:
-      - ./web/web.env
+      - ./undepress/.env
     volumes:
-      - ./web:/app/web
+      - ./undepress:/app/undepress
     depends_on:
       - db
 
   db:
     image: mongo:3.6
     volumes:
-      - ./data:/data/db
+      - undepress_db:/data/db
+
+volumes:
+  undepress_db:
