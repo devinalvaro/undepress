@@ -1,3 +1,0 @@
-#!/bin/bash
-
-scp web/data/*.pkl hulahoop@undepress.southeastasia.cloudapp.azure.com:/home/hulahoop/undepress/web/data
