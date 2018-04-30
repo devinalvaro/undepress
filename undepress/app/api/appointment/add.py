@@ -11,7 +11,7 @@ def add():
     form_data = get_form_data(request)
     add_appointment(form_data)
 
-    return "APPOINTMENT_ADD_SUCCESS"
+    return "APPOINTMENT_ADD_SUCCESS", 201
 
 
 def get_form_data(request):

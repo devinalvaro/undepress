@@ -12,7 +12,7 @@ def set():
     form_data = get_form_data(request)
     set_account(form_data)
 
-    return "ACCOUNT_SET_SUCCESS"
+    return "ACCOUNT_SET_SUCCESS", 204
 
 
 def get_form_data(request):

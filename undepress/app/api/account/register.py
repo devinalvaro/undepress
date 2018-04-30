@@ -10,11 +10,11 @@ def register():
     form_data = get_form_data(request)
 
     if does_email_exist(form_data):
-        return "ACCOUNT_REGISTER_EXIST"
+        return "ACCOUNT_REGISTER_EXIST", 409
     else:
         register_account(form_data)
 
-        return "ACCOUNT_REGISTER_SUCCESS"
+        return "ACCOUNT_REGISTER_SUCCESS", 201
 
 
 def get_form_data(request):

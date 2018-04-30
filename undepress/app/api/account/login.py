@@ -16,7 +16,7 @@ def login():
         set_token(user_id, token)
         return token
     else:
-        return "ACCOUNT_LOGIN_INVALID"
+        return "ACCOUNT_LOGIN_INVALID", 403
 
 
 def get_form_data(request):

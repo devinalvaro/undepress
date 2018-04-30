@@ -20,7 +20,7 @@ def index():
     if depression_detection is not None:
         return json_util.dumps(depression_detection)
     else:
-        return "DETECTION_USERNAME_NOT_FOUND"
+        return "DETECTION_USERNAME_NOT_FOUND", 404
 
 
 def detect_depression(app):

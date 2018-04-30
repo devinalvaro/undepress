@@ -12,7 +12,7 @@ def send():
     form_data = get_form_data(request)
     push_chat(form_data)
 
-    return "CHAT_SEND_SUCCESS"
+    return "CHAT_SEND_SUCCESS", 201
 
 
 def get_form_data(request):

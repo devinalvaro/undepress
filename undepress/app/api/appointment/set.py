@@ -11,7 +11,7 @@ def set():
     form_data = get_form_data(request)
     set_appointment(form_data)
 
-    return "APPOINTMENT_SET_SUCCESS"
+    return "APPOINTMENT_SET_SUCCESS", 204
 
 
 def get_form_data(request):

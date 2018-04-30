@@ -9,4 +9,4 @@ from ...lib.token import unset_token
 def logout():
     unset_token(current_user.user_id)
 
-    return "ACCOUNT_LOGOUT_SUCCESS"
+    return "ACCOUNT_LOGOUT_SUCCESS", 200

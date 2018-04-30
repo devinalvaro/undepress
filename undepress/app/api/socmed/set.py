@@ -11,7 +11,7 @@ def set():
     form_data = get_form_data(request)
     set_socialmedia(form_data)
 
-    return "SOCMED_SET_SUCCESS"
+    return "SOCMED_SET_SUCCESS", 204
 
 
 def get_form_data(request):
